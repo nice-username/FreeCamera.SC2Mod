@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DocInfo>
+    <Flags>
+        <Value>ExtensionMod</Value>
+    </Flags>
+    <Dependencies>
+        <Value>bnet:Void Multi (Mod)/0.0/999,file:Mods/VoidMulti.SC2Mod</Value>
+    </Dependencies>
+    <Screenshot>
+        <File>
+            <Value>cameras.png</Value>
+            <Value>test.png</Value>
+        </File>
+        <CaptionId>
+            <Value>2</Value>
+            <Value>1</Value>
+        </CaptionId>
+        <Flags>
+            <Value> </Value>
+            <Value> </Value>
+        </Flags>
+    </Screenshot>
+    <PatchNote>
+        <Version>
+            <Value>0.1</Value>
+        </Version>
+        <Date>
+            <Value>7/26/2017</Value>
+        </Date>
+        <Notes>
+            <Value>1</Value>
+        </Notes>
+    </PatchNote>
+</DocInfo>

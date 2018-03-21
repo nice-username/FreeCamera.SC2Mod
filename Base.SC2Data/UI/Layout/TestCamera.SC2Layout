@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Minimap" name="Minimap">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Width val="291"/>
+        <Height val="286"/>
+        <TooltipFrame val="MinimapPanelTooltip"/>
+
+        <Frame type="Model" name="PingFrame">
+            <Anchor relative="$parent"/>
+            <Camera position="0.000000,0.000000,10.000000" target="0.000000,0.000000,0.000000" fov="90" minz="1" maxz="1000"/>
+            <Projection val="Orthographic"/>
+            <UseShadows val="false"/>
+            <UseStandardCoordinates val="true"/>
+        </Frame>
+
+        <Frame type="MinimapCameraViewFrustumFrame" name="CameraViewFrustumFrame">
+            <Anchor relative="$parent"/>
+        </Frame>
+    </Frame>
+</Desc>

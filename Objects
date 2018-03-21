@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlacedObjects Version="27">
+    <ObjectCamera Id="574847508" Rotation="3.1413" Scale="1,1,1" Name="Camera 001" Color="0,0,0,0">
+        <CameraValue Index="FieldOfView" Value="27.7998"/>
+        <CameraValue Index="NearClip" Value="0.0998"/>
+        <CameraValue Index="FarClip" Value="600"/>
+        <CameraValue Index="ShadowClip" Value="75"/>
+        <CameraValue Index="Distance" Value="34"/>
+        <CameraValue Index="Pitch" Value="56"/>
+        <CameraValue Index="Yaw" Value="180"/>
+        <CameraValue Index="FocalDepth" Value="8"/>
+        <CameraValue Index="FalloffEnd" Value="8"/>
+    </ObjectCamera>
+</PlacedObjects>

@@ -1,0 +1,207 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Cutscene Editor
+//--------------------------------------------------------------------------------------------------
+// Structures
+struct libF27BF28E_gs_BlizzUI {
+    int lv_container;
+    int lv_template;
+};
+
+struct libF27BF28E_gs_OrdersTimeline {
+    int lv_container;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int[4] lv_overlays;
+};
+
+struct libF27BF28E_gs_Orders {
+    order[64] lv_orders;
+    int lv_orderCount;
+    unitgroup[64] lv_unitGroups;
+    int lv_unitGroupCount;
+    unitgroup[64] lv_points;
+    int lv_pointCount;
+};
+
+struct libF27BF28E_gs_CameraProperties {
+    string lv_title;
+    point lv_position;
+    revealer lv_vision;
+    fixed lv_wASDSpeed;
+    fixed lv_transitionDuration;
+    fixed lv_wait;
+    fixed lv_roll;
+    fixed lv_height;
+    fixed lv_rotation;
+    fixed lv_distance;
+    fixed lv_angleofAttack;
+    fixed lv_shadowClip;
+    fixed lv_depthofField;
+};
+
+struct libF27BF28E_gs_CameraPropsDialogs {
+    int lv_container;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    bool lv_wASDEnabled;
+    int lv_wASDCheckbox;
+    int lv_resetButton;
+    int lv_resetButtonImage;
+    int[16] lv_propertyNames;
+    int lv_propertyNameCount;
+    int[16] lv_propertyValues;
+    int lv_propertyValueCount;
+    int[16] lv_sliders;
+    int lv_sliderCount;
+    int lv_progressBar;
+};
+
+struct libF27BF28E_gs_CameraEventsDialogs {
+    int lv_container;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_listbox;
+    int lv_titleInput;
+    int lv_cameraDurationInput;
+    int lv_cameraDurationLabel;
+    int lv_cameraWaitInput;
+    int lv_cameraWaitLabel;
+    int[8] lv_buttons;
+    int lv_addButton;
+    int lv_deleteButton;
+    int lv_playButton;
+    int lv_stopButton;
+    int lv_editButton;
+    int lv_progressBar;
+    int[2] lv_statusBar;
+};
+
+struct libF27BF28E_gs_CameraEvents {
+    libF27BF28E_gs_CameraProperties[64] lv_cameras;
+    int lv_cameraID;
+};
+
+struct libF27BF28E_gs_Input {
+    bool lv_w;
+    bool lv_a;
+    bool lv_s;
+    bool lv_d;
+    bool lv_q;
+    bool lv_e;
+    bool lv_z;
+    point lv_mousePosition;
+    int lv_mouseX;
+    int lv_mouseY;
+};
+
+struct libF27BF28E_gs_Flags {
+    bool lv_vision;
+    bool lv_terrain;
+    bool lv_gameUI;
+    bool lv_cameraUI;
+    bool lv_resettingCamera;
+    bool lv_isEditingSavedCamera;
+    bool lv_isPlayingTimeline;
+};
+
+struct libF27BF28E_gs_Player {
+    libF27BF28E_gs_Input lv_input;
+    libF27BF28E_gs_Flags lv_flags;
+    libF27BF28E_gs_CameraProperties lv_camera;
+    libF27BF28E_gs_CameraEvents lv_savedCameras;
+};
+
+struct libF27BF28E_gs_App {
+    libF27BF28E_gs_Player[16] lv_players;
+    libF27BF28E_gs_CameraPropsDialogs lv_uICamera;
+    libF27BF28E_gs_CameraEventsDialogs lv_uIEvents;
+    libF27BF28E_gs_OrdersTimeline lv_uIOrders;
+    libF27BF28E_gs_BlizzUI lv_blizzUI;
+};
+
+// Variable Declarations
+libF27BF28E_gs_Player[16] libF27BF28E_gv_players;
+libF27BF28E_gs_App libF27BF28E_gv_app;
+
+// Function Declarations
+void libF27BF28E_gf_ToggleGameUI (bool lp_showHide);
+void libF27BF28E_gf_SetSliderAndValue (int lp_iD, fixed lp_value, playergroup lp_players);
+void libF27BF28E_gf_SetPropertyFromSlider (int lp_sliderID, fixed lp_value, int lp_player);
+void libF27BF28E_gf_SetCameraProperty (int lp_player, int lp_camProperty, fixed lp_newValue, fixed lp_duration);
+void libF27BF28E_gf_AddSlider (int lp_container, int lp_sizeX, int lp_sizeY, int lp_anchor, fixed lp_initValue, fixed lp_minValue, fixed lp_maxValue, int lp_padding, playergroup lp_players);
+void libF27BF28E_gf_AddPropertyLabel (int lp_arrayID, int lp_container, int lp_sizeX, int lp_sizeY, int lp_anchor, int lp_padding, text lp_text, string lp_fontStyle, playergroup lp_players);
+int libF27BF28E_gf_GetCameraDialogCount (int lp_arrayID);
+void libF27BF28E_gf_AddToCameraDialogCount (int lp_arrayID, int lp_dialogItem);
+void libF27BF28E_gf_CopySavedCamera (int lp_player, int lp_fromCamera, int lp_toCamera);
+void libF27BF28E_gf_DeleteSavedCameraData (int lp_player, int lp_savedCameraID);
+void libF27BF28E_gf_ToggleTitleAndTimingUI (int lp_player, bool lp_showUI);
+void libF27BF28E_gf_ToggleEditingSavedCameraUI (int lp_player, int lp_cameraID, bool lp_isEditingSavedCamera);
+void libF27BF28E_gf_EditSavedCameraListItem (int lp_listbox, string lp_newText, int lp_editItemID, int lp_player);
+void libF27BF28E_gf_PlaybackQueueForPlayer (int lp_player);
+void libF27BF28E_gf_TogglePlaybackTimelineUI (int lp_player, bool lp_isPlayingTimeline);
+void libF27BF28E_gf_WaitForQueue (timer lp_timer, fixed lp_timerLength, playergroup lp_players);
+void libF27BF28E_gf_LoadSavedCamera (int lp_player, int lp_cameraID, bool lp_applyInstantly);
+void libF27BF28E_gf_SetProgressBarValues (fixed lp_length, fixed lp_current, playergroup lp_players);
+void libF27BF28E_gf_AddCameraEventUI (int lp_cameraID, string lp_titleInput, int lp_player);
+void libF27BF28E_gf_AddCameraEventData (int lp_player, int lp_iD, fixed lp_duration, fixed lp_wait);
+void libF27BF28E_gf_SetSavedCameraData (int lp_player, int lp_iD, fixed lp_duration, fixed lp_wait);
+void libF27BF28E_gf_SetCameraTransitionStatusUI (int lp_messageID, string lp_title, fixed lp_transitionTime, fixed lp_wait, int lp_player);
+void libF27BF28E_gf_AnimateDialogItemSize (int lp_animSpeed, int lp_sizeX, int lp_sizeY, int lp_dialogItem, playergroup lp_players);
+void libF27BF28E_gf_DialogFadeItem (int lp_player, int lp_dialogItem, fixed lp_opacity, fixed lp_duration);
+void libF27BF28E_gf_DialogSetValue (int lp_editBox, string lp_newValue, playergroup lp_players);
+void libF27BF28E_gf_UpdatePlayerDialogItem (int lp_player, int lp_dialogItem, fixed lp_value);
+void libF27BF28E_gf_DialogAddRacesToDropdown (int lp_dropdown, playergroup lp_players);
+int libF27BF28E_gf_DialogAddContainer (int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players, string lp_title, string lp_background);
+int libF27BF28E_gf_DialogAddCloseButton (int lp_parentDialog, playergroup lp_players);
+int libF27BF28E_gf_DialogAddCloseButtonImage (int lp_parentDialog, playergroup lp_players, string lp_image);
+int libF27BF28E_gf_DialogAddLabel (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_fontStyle);
+int libF27BF28E_gf_DialogAddEditBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, string lp_value, string lp_fontStyle);
+int libF27BF28E_gf_DialogAddButton (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_image, string lp_hoverImage, int lp_imageType, string lp_fontStyle);
+int libF27BF28E_gf_DialogAddImage (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_anchor, int lp_offsetX, int lp_offsetY, text lp_tooltip, string lp_file, int lp_imageType, bool lp_tiledFlag, color lp_tint, int lp_blendMode);
+int libF27BF28E_gf_DialogAddPortrait (int lp_parent, int lp_anchor, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, bool lp_isBackgroundVisible, string lp_borderImage, string lp_camera);
+int libF27BF28E_gf_DialogAddSlider (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_initialValue);
+int libF27BF28E_gf_DialogAddProgressBar (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_current);
+int libF27BF28E_gf_AddListBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players);
+int libF27BF28E_gf_DialogAddGenericItem (int lp_dialogType, int lp_parentDialog, int lp_anchor, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players);
+bool libF27BF28E_gf_IsObs (int lp_player);
+void libF27BF28E_gf_SetObsPlayer ();
+
+// Trigger Declarations
+trigger libF27BF28E_gt_Initialize;
+trigger libF27BF28E_gt_InitHelp;
+trigger libF27BF28E_gt_InitBlizzUI;
+trigger libF27BF28E_gt_ToggleBlizzUI;
+trigger libF27BF28E_gt_PauseOnMouseOver;
+trigger libF27BF28E_gt_InitializeCameraPropertyUI;
+trigger libF27BF28E_gt_ToggleCameraUI;
+trigger libF27BF28E_gt_HandleMouseOverCameraProperty;
+trigger libF27BF28E_gt_ResetCamera;
+trigger libF27BF28E_gt_CloseButtonEvents;
+trigger libF27BF28E_gt_ResetButtonEvents;
+trigger libF27BF28E_gt_HandleSlider;
+trigger libF27BF28E_gt_InitializeCameraEventsUI;
+trigger libF27BF28E_gt_ToggleEventsUI;
+trigger libF27BF28E_gt_AddEventButton;
+trigger libF27BF28E_gt_DeleteEventButton;
+trigger libF27BF28E_gt_EditButton;
+trigger libF27BF28E_gt_StopButton;
+trigger libF27BF28E_gt_PlaybackQueueHotkey;
+trigger libF27BF28E_gt_PlaybackQueueButton;
+trigger libF27BF28E_gt_TrackMouse;
+trigger libF27BF28E_gt_InitializeCameraLocations;
+trigger libF27BF28E_gt__0TrackCamera;
+trigger libF27BF28E_gt__1TrackCamera;
+trigger libF27BF28E_gt__2TrackCamera;
+trigger libF27BF28E_gt_KeyUp;
+trigger libF27BF28E_gt_KeyDown;
+trigger libF27BF28E_gt_EventLoop;
+trigger libF27BF28E_gt_RRevealmap;
+trigger libF27BF28E_gt_CTRLCToggleSCIIUI;
+trigger libF27BF28E_gt_CTRLTToggleSCIITerrain;
+trigger libF27BF28E_gt_CTRLZToggleCameraUI;
+
+// Library Initialization
+void libF27BF28E_InitVariables ();
+

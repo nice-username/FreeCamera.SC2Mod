@@ -1,0 +1,51 @@
+﻿Attribute001/Desc=Obs or Player
+Attribute001/Name=PlayerType
+Attribute001/Value001/Desc=Player
+Attribute001/Value001/Name=Player
+Attribute001/Value002/Desc=Obs
+Attribute001/Value002/Name=Obs
+DocInfo/DescLong=http://www.twitter.com/nice__username
+DocInfo/DescShort=2
+DocInfo/HowToPlayBasic00=http://www.twitter.com/nice__username
+DocInfo/Name=FreeCamera
+DocInfo/PatchNote001=First public release.
+Param/Value/lib_F27BF28E_0A6A01CA=<img path="Assets\Textures\ui-editoricon-overviewmanager_refresh.dds" height="16" width="16"/>
+Param/Value/lib_F27BF28E_0DF9B236=stop<img path="EditorData\Images\SoundStop.tga"/>
+Param/Value/lib_F27BF28E_0F89E960=angle of attack
+Param/Value/lib_F27BF28E_0FFD275E=Terran
+Param/Value/lib_F27BF28E_1340DBA2=[ <c val="C8FA96">.</c> ]<n/>Camera properties<n/><n/>[ <c val="C8FA96">,</c> ]<n/>Timeline<n/><n/>[ <c val="C8FA96">K</c> ]<n/>Play timeline<n/><n/><c val="000000">------------------------------</c><n/><n/>[ <c val="C8FA96">R</c> ]<n/>On/off map vision<n/><n/>[ <c val="C8FA96">Ctrl + T</c> ]<n/>On/off Terrain<n/><n/>[ <c val="C8FA96">Shift + Tab</c> ]<n/>On/off Blizzard observer UI<n/><n/>[ <c val="C8FA96">Ctrl + C</c> ]<n/>On/off game UI
+Param/Value/lib_F27BF28E_19283FBA=play<img path="EditorData\Images\CutSceneEditor\Playhead\Control_Play.tga" height="16" width="16"/>
+Param/Value/lib_F27BF28E_1D3775DF=Protoss
+Param/Value/lib_F27BF28E_20610CB0=Zerg
+Param/Value/lib_F27BF28E_3DF83940=Press <c val="C8FA96">[F12]</c> for hotkeys.
+Param/Value/lib_F27BF28E_41524584=move with wasd
+Param/Value/lib_F27BF28E_43110D45=focus depth
+Param/Value/lib_F27BF28E_4DD7D535=edit<img path="EditorData\Images\Old\TriggerAction.tga"  width="16" height="16"/>
+Param/Value/lib_F27BF28E_500EB9F6=save<img path="Assets\Textures\ui_help_frame_tips_checkmark_terran.dds" width="16" height="16"/>
+Param/Value/lib_F27BF28E_54543B35=distance
+Param/Value/lib_F27BF28E_5CA550F6=delete<img path="EditorData\Images\ToolbarDeleteValue.tga"/>
+Param/Value/lib_F27BF28E_605CE7D5=cancel
+Param/Value/lib_F27BF28E_6BF540B4=speed
+Param/Value/lib_F27BF28E_6DB129B6=delete<img path="EditorData\Images\ToolbarDeleteValue.tga"/>
+Param/Value/lib_F27BF28E_7B3E493F=height
+Param/Value/lib_F27BF28E_8567993F=timeline
+Param/Value/lib_F27BF28E_8B8E49D7=<n/>
+Param/Value/lib_F27BF28E_9262CEC6=save
+Param/Value/lib_F27BF28E_959627BA=</c> over <c val="C8FA96">
+Param/Value/lib_F27BF28E_991D9F40=</c>s . . .
+Param/Value/lib_F27BF28E_9987B529=Neutral
+Param/Value/lib_F27BF28E_A3B90542=rotation
+Param/Value/lib_F27BF28E_A80044C8=</c>sec.
+Param/Value/lib_F27BF28E_C68CB0C4=Applying <c val="C8FA96">
+Param/Value/lib_F27BF28E_CA46ADD0=add<img path="EditorData\Images\DataAdd.tga" height="16" width="16"/>
+Param/Value/lib_F27BF28E_D432C396=Waiting for <c val="C8FA96">
+Param/Value/lib_F27BF28E_D5892141=add<img path="EditorData\Images\DataAdd.tga" height="16" width="16"/>
+Param/Value/lib_F27BF28E_D6A9AE20=wait
+Param/Value/lib_F27BF28E_D9DDC6EF=duration
+Param/Value/lib_F27BF28E_E1E9F770=roll
+Param/Value/lib_F27BF28E_E2FF6422=0
+Param/Value/lib_F27BF28E_E63FCAF6=Controls
+Param/Value/lib_F27BF28E_F8F21191=depth of field
+Param/Value/lib_F27BF28E_FAAE4DBC=add<img path="EditorData\Images\DataAdd.tga" height="16" width="16"/>
+Upgrade/Name/Obs=Obs
+Upgrade/Name/Player=Player

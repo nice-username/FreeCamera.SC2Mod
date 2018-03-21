@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUpgrade id="Obs">
+        <LeaderAlias value=""/>
+    </CUpgrade>
+    <CUpgrade id="Player">
+        <LeaderAlias value=""/>
+    </CUpgrade>
+</Catalog>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Preload>
+<Asset path="assets\textures\sc2_ui_glues_icons_closebutton.dds" Type="Image"/>
+<Asset path="assets\textures\ui_loadingscreen_playerloadingbar_highlighted.dds" Type="Image"/>
+<Asset path="assets\textures\blank.dds" Type="Image"/>
+<Asset path="assets\textures\ui_tip_questionmark.dds" Type="Image"/>
+<Asset path="assets\textures\ui_mission_hackingbuttonglow_normaloverpressedover_protoss.dds" Type="Image"/>
+<Asset path="assets\textures\ui_tooltip_frame_protoss.dds" Type="Image"/>
+<Asset path="assets\textures\ui_tooltip_frame_terran.dds" Type="Image"/>
+<Asset path="assets\textures\ui_mission_hackingbuttonglow_normalpressed_protoss.dds" Type="Image"/>
+<Asset path="assets\textures\ui-editoricon-overviewmanager_refresh.dds" Type="Image"/>
+<Asset path="assets\textures\sc2_ui_glues_icons_closebuttonhover.dds" Type="Image"/>
+<Actor id="SYSTEM_ActorConfig"/>
+<Texture id="CarbotVideo2"/>
+</Preload>

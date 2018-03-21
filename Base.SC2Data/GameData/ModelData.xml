@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CModel id="OGVPlayer" parent="Portrait">
+        <Model value="carbot/Assets/UI/VideoPlayer/OGVPlayer.m3"/>
+        <EditorCategories value=""/>
+        <Lighting value=""/>
+        <TextureDeclares Prefix="Video_" Slot="main">
+            <Adaptions TriggerOnSubstring="_Diffuse.ogv" Slot="video"/>
+        </TextureDeclares>
+    </CModel>
+</Catalog>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CTexture id="CarbotVideo1">
+        <File value="carbot\Assets\Textures\carbot1.ogv"/>
+        <Slot value="video"/>
+    </CTexture>
+    <CTexture id="CarbotVideo2">
+        <File value="carbot\Assets\Textures\carbot2.ogv"/>
+        <Slot value="video"/>
+    </CTexture>
+    <CTexture id="CarbotVideo3">
+        <File value="carbot\Assets\Textures\carbot3.ogv"/>
+        <Slot value="video"/>
+    </CTexture>
+</Catalog>

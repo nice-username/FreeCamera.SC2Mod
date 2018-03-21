@@ -1,0 +1,2769 @@
+include "TriggerLibs/NativeLib"
+
+include "LibF27BF28E_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: Cutscene Editor
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libF27BF28E_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool libF27BF28E_InitVariables_completed = false;
+
+void libF27BF28E_InitVariables () {
+    int init_i;
+    int init_i1;
+    int init_i2;
+    int init_i3;
+
+    if (libF27BF28E_InitVariables_completed) {
+        return;
+    }
+
+    libF27BF28E_InitVariables_completed = true;
+
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        libF27BF28E_gv_players[init_i].lv_flags.lv_terrain = true;
+        libF27BF28E_gv_players[init_i].lv_flags.lv_gameUI = true;
+        libF27BF28E_gv_players[init_i].lv_camera.lv_title = "";
+        libF27BF28E_gv_players[init_i].lv_camera.lv_rotation = 90.0;
+        libF27BF28E_gv_players[init_i].lv_camera.lv_distance = 34.0;
+        libF27BF28E_gv_players[init_i].lv_camera.lv_angleofAttack = 56.0;
+        libF27BF28E_gv_players[init_i].lv_camera.lv_shadowClip = 8.0;
+        for (init_i2 = 0; init_i2 <= 63; init_i2 += 1) {
+            libF27BF28E_gv_players[init_i].lv_savedCameras.lv_cameras[init_i2].lv_title = "";
+            libF27BF28E_gv_players[init_i].lv_savedCameras.lv_cameras[init_i2].lv_rotation = 90.0;
+            libF27BF28E_gv_players[init_i].lv_savedCameras.lv_cameras[init_i2].lv_distance = 34.0;
+            libF27BF28E_gv_players[init_i].lv_savedCameras.lv_cameras[init_i2].lv_angleofAttack = 56.0;
+            libF27BF28E_gv_players[init_i].lv_savedCameras.lv_cameras[init_i2].lv_shadowClip = 8.0;
+        }
+    }
+    for (init_i1 = 0; init_i1 <= 15; init_i1 += 1) {
+        libF27BF28E_gv_app.lv_players[init_i1].lv_flags.lv_terrain = true;
+        libF27BF28E_gv_app.lv_players[init_i1].lv_flags.lv_gameUI = true;
+        libF27BF28E_gv_app.lv_players[init_i1].lv_camera.lv_title = "";
+        libF27BF28E_gv_app.lv_players[init_i1].lv_camera.lv_rotation = 90.0;
+        libF27BF28E_gv_app.lv_players[init_i1].lv_camera.lv_distance = 34.0;
+        libF27BF28E_gv_app.lv_players[init_i1].lv_camera.lv_angleofAttack = 56.0;
+        libF27BF28E_gv_app.lv_players[init_i1].lv_camera.lv_shadowClip = 8.0;
+        for (init_i3 = 0; init_i3 <= 63; init_i3 += 1) {
+            libF27BF28E_gv_app.lv_players[init_i1].lv_savedCameras.lv_cameras[init_i3].lv_title = "";
+            libF27BF28E_gv_app.lv_players[init_i1].lv_savedCameras.lv_cameras[init_i3].lv_rotation = 90.0;
+            libF27BF28E_gv_app.lv_players[init_i1].lv_savedCameras.lv_cameras[init_i3].lv_distance = 34.0;
+            libF27BF28E_gv_app.lv_players[init_i1].lv_savedCameras.lv_cameras[init_i3].lv_angleofAttack = 56.0;
+            libF27BF28E_gv_app.lv_players[init_i1].lv_savedCameras.lv_cameras[init_i3].lv_shadowClip = 8.0;
+        }
+    }
+    libF27BF28E_gv_app.lv_uICamera.lv_container = c_invalidDialogId;
+    libF27BF28E_gv_app.lv_uICamera.lv_closeButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uICamera.lv_closeButtonImage = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uICamera.lv_wASDCheckbox = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uICamera.lv_resetButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uICamera.lv_resetButtonImage = c_invalidDialogControlId;
+    for (init_i2 = 0; init_i2 <= 15; init_i2 += 1) {
+        libF27BF28E_gv_app.lv_uICamera.lv_propertyNames[init_i2] = c_invalidDialogControlId;
+    }
+    for (init_i2 = 0; init_i2 <= 15; init_i2 += 1) {
+        libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[init_i2] = c_invalidDialogControlId;
+    }
+    for (init_i2 = 0; init_i2 <= 15; init_i2 += 1) {
+        libF27BF28E_gv_app.lv_uICamera.lv_sliders[init_i2] = c_invalidDialogControlId;
+    }
+    libF27BF28E_gv_app.lv_uICamera.lv_progressBar = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_container = c_invalidDialogId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_closeButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_closeButtonImage = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_listbox = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_titleInput = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationLabel = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitLabel = c_invalidDialogControlId;
+    for (init_i2 = 0; init_i2 <= 7; init_i2 += 1) {
+        libF27BF28E_gv_app.lv_uIEvents.lv_buttons[init_i2] = c_invalidDialogControlId;
+    }
+    libF27BF28E_gv_app.lv_uIEvents.lv_addButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_playButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_stopButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_editButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIEvents.lv_progressBar = c_invalidDialogControlId;
+    for (init_i2 = 0; init_i2 <= 1; init_i2 += 1) {
+        libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[init_i2] = c_invalidDialogControlId;
+    }
+    libF27BF28E_gv_app.lv_uIOrders.lv_container = c_invalidDialogId;
+    libF27BF28E_gv_app.lv_uIOrders.lv_closeButton = c_invalidDialogControlId;
+    libF27BF28E_gv_app.lv_uIOrders.lv_closeButtonImage = c_invalidDialogControlId;
+    for (init_i2 = 0; init_i2 <= 3; init_i2 += 1) {
+        libF27BF28E_gv_app.lv_uIOrders.lv_overlays[init_i2] = c_invalidDialogControlId;
+    }
+    libF27BF28E_gv_app.lv_blizzUI.lv_container = c_invalidDialogId;
+    libF27BF28E_gv_app.lv_blizzUI.lv_template = c_invalidDialogControlId;
+}
+
+// Functions
+void libF27BF28E_gf_ToggleGameUI (bool lp_showHide) {
+    // Automatic Variable Declarations
+    // Implementation
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeAchievementMenuButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeAlertPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeAllianceButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeArmyButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeCommandPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeConsolePanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeControlGroupPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeErrorDisplayPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeHelpMenuButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeHeroPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeIdleWorkerButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeInfoPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeInventoryPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeLeaderPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMenuBar, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMissionTimePanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMinimapPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeObjectivePanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypePingPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypePylonButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeResourcePanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeRoomPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeStatusUI, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeSupply, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeTeamResourceButton, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeTechGlossaryPanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeTechTreePanel, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeTextTag, lp_showHide);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeTipAlertPanel, lp_showHide);
+}
+
+void libF27BF28E_gf_SetSliderAndValue (int lp_iD, fixed lp_value, playergroup lp_players) {
+    // Variable Declarations
+    int lv_slider;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_slider = libF27BF28E_gv_app.lv_uICamera.lv_sliders[lp_iD];
+
+    // Implementation
+    libNtve_gf_SetDialogItemRenderPriority(lv_slider, 512, lp_players);
+    DialogControlSetEnabled(lv_slider, lp_players, true);
+    libF27BF28E_gf_DialogFadeItem(PlayerGroupPlayer(lp_players, 1), lv_slider, 0.0, 0.5);
+    libNtve_gf_SetDialogItemCurrentValue(lv_slider, lp_value, lp_players);
+    libNtve_gf_SetDialogItemCurrentValue(libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[lp_iD], lp_value, lp_players);
+}
+
+void libF27BF28E_gf_SetPropertyFromSlider (int lp_sliderID, fixed lp_value, int lp_player) {
+    // Automatic Variable Declarations
+    int auto0244A2AD_val;
+
+    // Implementation
+    auto0244A2AD_val = lp_sliderID;
+    if (auto0244A2AD_val == 1) {
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_wASDSpeed = lp_value;
+    }
+    else if (auto0244A2AD_val == 2) {
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_transitionDuration = lp_value;
+    }
+    else if (auto0244A2AD_val == 3) {
+        CameraSetValue(lp_player, c_cameraValueRoll, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_roll = lp_value;
+    }
+    else if (auto0244A2AD_val == 4) {
+        CameraSetValue(lp_player, c_cameraValueHeightOffset, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_height = lp_value;
+    }
+    else if (auto0244A2AD_val == 5) {
+        CameraSetValue(lp_player, c_cameraValueYaw, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_rotation = lp_value;
+    }
+    else if (auto0244A2AD_val == 6) {
+        CameraSetValue(lp_player, c_cameraValueDistance, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_distance = lp_value;
+    }
+    else if (auto0244A2AD_val == 7) {
+        CameraSetValue(lp_player, c_cameraValuePitch, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_angleofAttack = lp_value;
+    }
+    else if (auto0244A2AD_val == 8) {
+        CameraSetValue(lp_player, c_cameraValueShadowClip, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_shadowClip = lp_value;
+    }
+    else if (auto0244A2AD_val == 9) {
+        CameraSetValue(lp_player, c_cameraValueDepthOfField, lp_value, 0.5, -1, 10.0);
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_depthofField = lp_value;
+    }
+    else {
+    }
+}
+
+void libF27BF28E_gf_SetCameraProperty (int lp_player, int lp_camProperty, fixed lp_newValue, fixed lp_duration) {
+    // Automatic Variable Declarations
+    int auto8E49CA11_val;
+
+    // Implementation
+    auto8E49CA11_val = lp_camProperty;
+    if (auto8E49CA11_val == c_cameraValuePitch) {
+        CameraSetValue(lp_player, c_cameraValuePitch, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(7, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_angleofAttack = lp_newValue;
+    }
+    else if (auto8E49CA11_val == c_cameraValueDepthOfField) {
+        CameraSetValue(lp_player, c_cameraValueDepthOfField, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(9, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_depthofField = lp_newValue;
+    }
+    else if (auto8E49CA11_val == c_cameraValueDistance) {
+        CameraSetValue(lp_player, c_cameraValueDistance, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(6, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_distance = lp_newValue;
+    }
+    else if (auto8E49CA11_val == c_cameraValueFocalDepth) {
+        CameraSetValue(lp_player, c_cameraValueShadowClip, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(8, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_shadowClip = lp_newValue;
+    }
+    else if (auto8E49CA11_val == c_cameraValueHeightOffset) {
+        CameraSetValue(lp_player, c_cameraValueHeightOffset, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(4, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_height = lp_newValue;
+    }
+    else if (auto8E49CA11_val == c_cameraValueRoll) {
+        CameraSetValue(lp_player, c_cameraValueRoll, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(3, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_roll = lp_newValue;
+    }
+    else if (auto8E49CA11_val == c_cameraValueYaw) {
+        CameraSetValue(lp_player, c_cameraValueYaw, lp_newValue, lp_duration, -1, 10.0);
+        libF27BF28E_gf_SetSliderAndValue(5, lp_newValue, PlayerGroupSingle(lp_player));
+        libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_rotation = lp_newValue;
+    }
+    else {
+    }
+}
+
+void libF27BF28E_gf_AddSlider (int lp_container, int lp_sizeX, int lp_sizeY, int lp_anchor, fixed lp_initValue, fixed lp_minValue, fixed lp_maxValue, int lp_padding, playergroup lp_players) {
+    // Variable Declarations
+    int lv_slider;
+    int lv_itemCount;
+    int lv_offsetX;
+    int lv_offsetY;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_slider = c_invalidDialogControlId;
+
+    // Implementation
+    lv_itemCount = libF27BF28E_gf_GetCameraDialogCount(2);
+    lv_offsetX = ((1 * lp_sizeX) + lp_padding);
+    lv_offsetY = ((lv_itemCount * (lp_sizeY / 2)) + (lp_padding / 2));
+    lv_slider = libF27BF28E_gf_DialogAddSlider(lp_container, lp_sizeX, lp_sizeY, lv_offsetX, lv_offsetY, lp_players, lp_anchor, lp_minValue, lp_maxValue, lp_initValue);
+    DialogControlFadeTransparency(lv_slider, lp_players, 0.0, 100.0);
+    libF27BF28E_gf_AddToCameraDialogCount(2, lv_slider);
+}
+
+void libF27BF28E_gf_AddPropertyLabel (int lp_arrayID, int lp_container, int lp_sizeX, int lp_sizeY, int lp_anchor, int lp_padding, text lp_text, string lp_fontStyle, playergroup lp_players) {
+    // Variable Declarations
+    int lv_item;
+    int lv_buttonOverlay;
+    int lv_itemCount;
+    int lv_offsetX;
+    int lv_offsetY;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_item = c_invalidDialogControlId;
+    lv_buttonOverlay = c_invalidDialogControlId;
+
+    // Implementation
+    lv_itemCount = libF27BF28E_gf_GetCameraDialogCount(lp_arrayID);
+    lv_offsetX = ((lp_arrayID * FixedToInt((lp_sizeX * 2.5))) + lp_padding);
+    lv_offsetY = ((lv_itemCount * (lp_sizeY / 2)) + (lp_padding / 2));
+    lv_item = libF27BF28E_gf_DialogAddLabel(lp_container, lp_sizeX, lp_sizeY, lv_offsetX, lv_offsetY, lp_players, lp_anchor, lp_text, lp_fontStyle);
+    lv_buttonOverlay = libF27BF28E_gf_DialogAddButton(lp_container, lp_sizeX, lp_sizeY, lv_offsetX, lv_offsetY, lp_players, lp_anchor, null, null, null, c_triggerImageTypeNone, null);
+    DialogControlFadeTransparency(lv_buttonOverlay, PlayerGroupAll(), 0.0, 100.0);
+    libF27BF28E_gf_AddToCameraDialogCount(lp_arrayID, lv_item);
+}
+
+int libF27BF28E_gf_GetCameraDialogCount (int lp_arrayID) {
+    // Automatic Variable Declarations
+    int auto2EA3AA36_val;
+
+    // Implementation
+    auto2EA3AA36_val = lp_arrayID;
+    if (auto2EA3AA36_val == 0) {
+        return libF27BF28E_gv_app.lv_uICamera.lv_propertyNameCount;
+    }
+    else if (auto2EA3AA36_val == 1) {
+        return libF27BF28E_gv_app.lv_uICamera.lv_propertyValueCount;
+    }
+    else if (auto2EA3AA36_val == 2) {
+        return libF27BF28E_gv_app.lv_uICamera.lv_sliderCount;
+    }
+    else {
+        return -1;
+    }
+}
+
+void libF27BF28E_gf_AddToCameraDialogCount (int lp_arrayID, int lp_dialogItem) {
+    // Variable Declarations
+    int lv_iD;
+
+    // Automatic Variable Declarations
+    int auto0BCDC06F_val;
+
+    // Variable Initialization
+
+    // Implementation
+    auto0BCDC06F_val = lp_arrayID;
+    if (auto0BCDC06F_val == 0) {
+        lv_iD = libF27BF28E_gv_app.lv_uICamera.lv_propertyNameCount;
+        if ((lp_dialogItem != c_invalidDialogControlId)) {
+            libF27BF28E_gv_app.lv_uICamera.lv_propertyNames[lv_iD] = lp_dialogItem;
+        }
+
+        libF27BF28E_gv_app.lv_uICamera.lv_propertyNameCount += 1;
+    }
+    else if (auto0BCDC06F_val == 1) {
+        lv_iD = libF27BF28E_gv_app.lv_uICamera.lv_propertyValueCount;
+        if ((lp_dialogItem != c_invalidDialogControlId)) {
+            libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[lv_iD] = lp_dialogItem;
+        }
+
+        libF27BF28E_gv_app.lv_uICamera.lv_propertyValueCount += 1;
+    }
+    else if (auto0BCDC06F_val == 2) {
+        lv_iD = libF27BF28E_gv_app.lv_uICamera.lv_sliderCount;
+        if ((lp_dialogItem != c_invalidDialogControlId)) {
+            libF27BF28E_gv_app.lv_uICamera.lv_sliders[lv_iD] = lp_dialogItem;
+        }
+
+        libF27BF28E_gv_app.lv_uICamera.lv_sliderCount += 1;
+    }
+    else {
+    }
+}
+
+void libF27BF28E_gf_CopySavedCamera (int lp_player, int lp_fromCamera, int lp_toCamera) {
+    // Automatic Variable Declarations
+    // Implementation
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_title = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_title;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_transitionDuration = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_transitionDuration;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_wait = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_wait;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_position = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_position;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_angleofAttack = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_angleofAttack;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_depthofField = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_depthofField;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_distance = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_distance;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_height = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_height;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_roll = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_roll;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_rotation = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_rotation;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_toCamera].lv_shadowClip = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_fromCamera].lv_shadowClip;
+}
+
+void libF27BF28E_gf_DeleteSavedCameraData (int lp_player, int lp_savedCameraID) {
+    int init_i;
+
+    // Variable Declarations
+    int lv_i;
+    int lv_previousSlot;
+    int lv_savedCameraCount;
+    libF27BF28E_gs_CameraProperties[16] lv_nextCamera;
+
+    // Automatic Variable Declarations
+    int autoF3A15A79_ae;
+    const int autoF3A15A79_ai = 1;
+
+    // Variable Initialization
+    lv_savedCameraCount = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameraID;
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_nextCamera[init_i].lv_title = "";
+        lv_nextCamera[init_i].lv_rotation = 90.0;
+        lv_nextCamera[init_i].lv_distance = 34.0;
+        lv_nextCamera[init_i].lv_angleofAttack = 56.0;
+        lv_nextCamera[init_i].lv_shadowClip = 8.0;
+    }
+
+    // Implementation
+    if ((lv_savedCameraCount > 0)) {
+        autoF3A15A79_ae = (lv_savedCameraCount - 1);
+        lv_i = lp_savedCameraID;
+        for ( ; ( (autoF3A15A79_ai >= 0 && lv_i <= autoF3A15A79_ae) || (autoF3A15A79_ai < 0 && lv_i >= autoF3A15A79_ae) ) ; lv_i += autoF3A15A79_ai ) {
+            libF27BF28E_gf_CopySavedCamera(lp_player, (lv_i + 1), lv_i);
+        }
+        libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameraID -= 1;
+    }
+
+}
+
+void libF27BF28E_gf_ToggleTitleAndTimingUI (int lp_player, bool lp_showUI) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_showUI == true)) {
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitLabel, PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput, PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationLabel, PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput, PlayerGroupSingle(lp_player), true);
+        DialogControlRequestFocus(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, PlayerGroupSingle(lp_player));
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_editButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupSingle(lp_player), false);
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_addButton, StringExternal("Param/Value/lib_F27BF28E_9262CEC6"), PlayerGroupSingle(lp_player));
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, StringExternal("Param/Value/lib_F27BF28E_605CE7D5"), PlayerGroupSingle(lp_player));
+    }
+    else {
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, PlayerGroupSingle(lp_player), false);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitLabel, PlayerGroupSingle(lp_player), false);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput, PlayerGroupSingle(lp_player), false);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationLabel, PlayerGroupSingle(lp_player), false);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_editButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupSingle(lp_player), true);
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_addButton, StringExternal("Param/Value/lib_F27BF28E_D5892141"), PlayerGroupSingle(lp_player));
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, StringExternal("Param/Value/lib_F27BF28E_5CA550F6"), PlayerGroupSingle(lp_player));
+    }
+}
+
+void libF27BF28E_gf_ToggleEditingSavedCameraUI (int lp_player, int lp_cameraID, bool lp_isEditingSavedCamera) {
+    // Automatic Variable Declarations
+    bool autoC960CB89_val;
+
+    // Implementation
+    autoC960CB89_val = lp_isEditingSavedCamera;
+    if (autoC960CB89_val == true) {
+        libF27BF28E_gv_app.lv_players[lp_player].lv_flags.lv_isEditingSavedCamera = true;
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_editButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), false);
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_addButton, StringExternal("Param/Value/lib_F27BF28E_500EB9F6"), PlayerGroupSingle(lp_player));
+        libNtve_gf_SetDialogItemEditorValue(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_title, PlayerGroupSingle(lp_player));
+        libNtve_gf_SetDialogItemEditorValue(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput, FixedToString(libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_transitionDuration, 1), PlayerGroupSingle(lp_player));
+        libNtve_gf_SetDialogItemEditorValue(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput, FixedToString(libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_wait, 1), PlayerGroupSingle(lp_player));
+    }
+    else if (autoC960CB89_val == false) {
+        libF27BF28E_gv_app.lv_players[lp_player].lv_flags.lv_isEditingSavedCamera = false;
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_editButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), true);
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_addButton, StringExternal("Param/Value/lib_F27BF28E_CA46ADD0"), PlayerGroupSingle(lp_player));
+    }
+    else {
+    }
+}
+
+void libF27BF28E_gf_EditSavedCameraListItem (int lp_listbox, string lp_newText, int lp_editItemID, int lp_player) {
+    // Variable Declarations
+    string lv_name;
+    int lv_savedCameraCount;
+    int lv_currentItemID;
+
+    // Automatic Variable Declarations
+    int auto007DC116_ae;
+    const int auto007DC116_ai = 1;
+    int autoC8C3931A_ae;
+    const int autoC8C3931A_ai = 1;
+
+    // Variable Initialization
+    lv_name = "";
+    lv_savedCameraCount = DialogControlGetItemCount(lp_listbox, lp_player);
+
+    // Implementation
+    auto007DC116_ae = lv_savedCameraCount;
+    lv_currentItemID = lp_editItemID;
+    for ( ; ( (auto007DC116_ai >= 0 && lv_currentItemID <= auto007DC116_ae) || (auto007DC116_ai < 0 && lv_currentItemID >= auto007DC116_ae) ) ; lv_currentItemID += auto007DC116_ai ) {
+        DialogControlRemoveItem(lp_listbox, PlayerGroupSingle(lp_player), (lp_editItemID + 1));
+    }
+    DialogControlAddItem(lp_listbox, PlayerGroupSingle(lp_player), StringToText(lp_newText));
+    DialogControlSelectItem(lp_listbox, PlayerGroupSingle(lp_player), (lp_editItemID + 1));
+    autoC8C3931A_ae = (lv_savedCameraCount - 0);
+    lv_currentItemID = (lp_editItemID + 1);
+    for ( ; ( (autoC8C3931A_ai >= 0 && lv_currentItemID <= autoC8C3931A_ae) || (autoC8C3931A_ai < 0 && lv_currentItemID >= autoC8C3931A_ae) ) ; lv_currentItemID += autoC8C3931A_ai ) {
+        lv_name = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lv_currentItemID].lv_title;
+        if ((lv_name != "")) {
+            DialogControlAddItem(lp_listbox, PlayerGroupSingle(lp_player), StringToText(lv_name));
+        }
+
+    }
+}
+
+trigger auto_libF27BF28E_gf_PlaybackQueueForPlayer_Trigger = null;
+int auto_libF27BF28E_gf_PlaybackQueueForPlayer_lp_player;
+
+void libF27BF28E_gf_PlaybackQueueForPlayer (int lp_player) {
+    auto_libF27BF28E_gf_PlaybackQueueForPlayer_lp_player = lp_player;
+
+    if (auto_libF27BF28E_gf_PlaybackQueueForPlayer_Trigger == null) {
+        auto_libF27BF28E_gf_PlaybackQueueForPlayer_Trigger = TriggerCreate("auto_libF27BF28E_gf_PlaybackQueueForPlayer_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libF27BF28E_gf_PlaybackQueueForPlayer_Trigger, false, false);
+}
+
+bool auto_libF27BF28E_gf_PlaybackQueueForPlayer_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libF27BF28E_gf_PlaybackQueueForPlayer_lp_player;
+
+    // Variable Declarations
+    int lv_cameraID;
+    int lv_savedCameraCount;
+    int lv_selectedSavedCameraID;
+    libF27BF28E_gs_CameraProperties lv_camera;
+    text lv_status;
+    timer lv_timer;
+
+    // Automatic Variable Declarations
+    int autoDEFD256E_ae;
+    const int autoDEFD256E_ai = 1;
+
+    // Variable Initialization
+    lv_selectedSavedCameraID = (DialogControlGetSelectedItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, lp_player) - 1);
+    lv_camera.lv_title = "";
+    lv_camera.lv_rotation = 90.0;
+    lv_camera.lv_distance = 34.0;
+    lv_camera.lv_angleofAttack = 56.0;
+    lv_camera.lv_shadowClip = 8.0;
+    lv_timer = TimerCreate();
+
+    // Implementation
+    libF27BF28E_gv_app.lv_players[lp_player].lv_flags.lv_isPlayingTimeline = true;
+    libF27BF28E_gf_TogglePlaybackTimelineUI(lp_player, true);
+    if ((lv_selectedSavedCameraID < 0)) {
+        lv_selectedSavedCameraID = 0;
+    }
+
+    lv_savedCameraCount = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameraID;
+    autoDEFD256E_ae = (lv_savedCameraCount - 1);
+    lv_cameraID = lv_selectedSavedCameraID;
+    for ( ; ( (autoDEFD256E_ai >= 0 && lv_cameraID <= autoDEFD256E_ae) || (autoDEFD256E_ai < 0 && lv_cameraID >= autoDEFD256E_ae) ) ; lv_cameraID += autoDEFD256E_ai ) {
+        DialogControlSelectItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), (lv_cameraID + 1));
+        lv_camera.lv_title = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lv_cameraID].lv_title;
+        lv_camera.lv_transitionDuration = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lv_cameraID].lv_transitionDuration;
+        lv_camera.lv_wait = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lv_cameraID].lv_wait;
+        if ((lv_cameraID == 0)) {
+            lv_camera.lv_transitionDuration = 0.0;
+            lv_camera.lv_wait = 0.0;
+        }
+
+        libF27BF28E_gf_SetCameraTransitionStatusUI(0, lv_camera.lv_title, lv_camera.lv_transitionDuration, lv_camera.lv_wait, lp_player);
+        libF27BF28E_gf_LoadSavedCamera(lp_player, lv_cameraID, false);
+        TimerStart(TimerCreate(), lv_camera.lv_wait, false, c_timeGame);
+        libF27BF28E_gf_WaitForQueue(TimerLastStarted(), lv_camera.lv_wait, PlayerGroupSingle(lp_player));
+        Wait(lv_camera.lv_wait, c_timeGame);
+    }
+    Wait(lv_camera.lv_wait, c_timeGame);
+    libF27BF28E_gf_TogglePlaybackTimelineUI(lp_player, false);
+    DialogControlSelectItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), (lv_selectedSavedCameraID + 1));
+    libF27BF28E_gv_app.lv_players[lp_player].lv_flags.lv_isPlayingTimeline = false;
+    return true;
+}
+
+void libF27BF28E_gf_TogglePlaybackTimelineUI (int lp_player, bool lp_isPlayingTimeline) {
+    // Automatic Variable Declarations
+    bool auto01062C07_val;
+
+    // Implementation
+    auto01062C07_val = lp_isPlayingTimeline;
+    if (auto01062C07_val == true) {
+        TriggerEnable(libF27BF28E_gt_HandleSlider, false);
+        libNtve_gf_HideGameUI(false, PlayerGroupSingle(lp_player));
+        CameraLockInput(lp_player, true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_addButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_editButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_stopButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[0], PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[1], PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_progressBar, PlayerGroupSingle(lp_player), true);
+        DialogSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_container, PlayerGroupSingle(lp_player), false);
+        DialogSetVisible(libF27BF28E_gv_app.lv_uICamera.lv_container, PlayerGroupSingle(lp_player), false);
+    }
+    else if (auto01062C07_val == false) {
+        TriggerEnable(libF27BF28E_gt_HandleSlider, true);
+        libNtve_gf_HideGameUI(true, PlayerGroupSingle(lp_player));
+        CameraLockInput(lp_player, false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_stopButton, PlayerGroupSingle(lp_player), false);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_addButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_editButton, PlayerGroupSingle(lp_player), true);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_progressBar, PlayerGroupSingle(lp_player), false);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[0], PlayerGroupSingle(lp_player), false);
+        DialogControlSetVisible(libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[1], PlayerGroupSingle(lp_player), false);
+    }
+    else {
+    }
+}
+
+trigger auto_libF27BF28E_gf_WaitForQueue_Trigger = null;
+timer auto_libF27BF28E_gf_WaitForQueue_lp_timer;
+fixed auto_libF27BF28E_gf_WaitForQueue_lp_timerLength;
+playergroup auto_libF27BF28E_gf_WaitForQueue_lp_players;
+
+void libF27BF28E_gf_WaitForQueue (timer lp_timer, fixed lp_timerLength, playergroup lp_players) {
+    auto_libF27BF28E_gf_WaitForQueue_lp_timer = lp_timer;
+    auto_libF27BF28E_gf_WaitForQueue_lp_timerLength = lp_timerLength;
+    auto_libF27BF28E_gf_WaitForQueue_lp_players = lp_players;
+
+    if (auto_libF27BF28E_gf_WaitForQueue_Trigger == null) {
+        auto_libF27BF28E_gf_WaitForQueue_Trigger = TriggerCreate("auto_libF27BF28E_gf_WaitForQueue_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libF27BF28E_gf_WaitForQueue_Trigger, false, false);
+}
+
+bool auto_libF27BF28E_gf_WaitForQueue_TriggerFunc (bool testConds, bool runActions) {
+    timer lp_timer = auto_libF27BF28E_gf_WaitForQueue_lp_timer;
+    fixed lp_timerLength = auto_libF27BF28E_gf_WaitForQueue_lp_timerLength;
+    playergroup lp_players = auto_libF27BF28E_gf_WaitForQueue_lp_players;
+
+    // Variable Declarations
+    text lv_status;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libF27BF28E_gf_SetProgressBarValues(lp_timerLength, 0.0, lp_players);
+    while ((TimerGetElapsed(lp_timer) < lp_timerLength) && (libF27BF28E_gv_app.lv_players[PlayerGroupPlayer(lp_players, 1)].lv_flags.lv_isPlayingTimeline == true)) {
+        libF27BF28E_gf_SetCameraTransitionStatusUI(1, "", -1.0, (lp_timerLength - TimerGetElapsed(lp_timer)), PlayerGroupPlayer(lp_players, 1));
+        libNtve_gf_SetDialogItemCurrentValue(libF27BF28E_gv_app.lv_uIEvents.lv_progressBar, TimerGetElapsed(lp_timer), lp_players);
+        Wait(0.0001, c_timeGame);
+    }
+    return true;
+}
+
+trigger auto_libF27BF28E_gf_LoadSavedCamera_Trigger = null;
+int auto_libF27BF28E_gf_LoadSavedCamera_lp_player;
+int auto_libF27BF28E_gf_LoadSavedCamera_lp_cameraID;
+bool auto_libF27BF28E_gf_LoadSavedCamera_lp_applyInstantly;
+
+void libF27BF28E_gf_LoadSavedCamera (int lp_player, int lp_cameraID, bool lp_applyInstantly) {
+    auto_libF27BF28E_gf_LoadSavedCamera_lp_player = lp_player;
+    auto_libF27BF28E_gf_LoadSavedCamera_lp_cameraID = lp_cameraID;
+    auto_libF27BF28E_gf_LoadSavedCamera_lp_applyInstantly = lp_applyInstantly;
+
+    if (auto_libF27BF28E_gf_LoadSavedCamera_Trigger == null) {
+        auto_libF27BF28E_gf_LoadSavedCamera_Trigger = TriggerCreate("auto_libF27BF28E_gf_LoadSavedCamera_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libF27BF28E_gf_LoadSavedCamera_Trigger, false, false);
+}
+
+bool auto_libF27BF28E_gf_LoadSavedCamera_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libF27BF28E_gf_LoadSavedCamera_lp_player;
+    int lp_cameraID = auto_libF27BF28E_gf_LoadSavedCamera_lp_cameraID;
+    bool lp_applyInstantly = auto_libF27BF28E_gf_LoadSavedCamera_lp_applyInstantly;
+
+    // Variable Declarations
+    libF27BF28E_gs_CameraProperties lv_camera;
+    fixed lv_duration;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_camera.lv_title = "";
+    lv_camera.lv_rotation = 90.0;
+    lv_camera.lv_distance = 34.0;
+    lv_camera.lv_angleofAttack = 56.0;
+    lv_camera.lv_shadowClip = 8.0;
+
+    // Implementation
+    lv_camera.lv_title = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_title;
+    lv_camera.lv_position = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_position;
+    lv_camera.lv_transitionDuration = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_transitionDuration;
+    lv_camera.lv_wait = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_wait;
+    lv_camera.lv_angleofAttack = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_angleofAttack;
+    lv_camera.lv_depthofField = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_depthofField;
+    lv_camera.lv_distance = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_distance;
+    lv_camera.lv_height = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_height;
+    lv_camera.lv_roll = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_roll;
+    lv_camera.lv_rotation = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_rotation;
+    lv_camera.lv_shadowClip = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_cameraID].lv_shadowClip;
+    if ((lp_applyInstantly == true)) {
+        lv_duration = 0.0;
+    }
+    else {
+        lv_duration = lv_camera.lv_transitionDuration;
+    }
+    if ((lp_cameraID == 0)) {
+        lv_duration = 0.0;
+    }
+
+    CameraPan(lp_player, lv_camera.lv_position, lv_duration, -1, 10.0, false);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValuePitch, lv_camera.lv_angleofAttack, lv_duration);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValueDepthOfField, lv_camera.lv_depthofField, lv_duration);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValueDistance, lv_camera.lv_distance, lv_duration);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValueShadowClip, lv_camera.lv_shadowClip, lv_duration);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValueHeightOffset, lv_camera.lv_height, lv_duration);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValueRoll, lv_camera.lv_roll, lv_duration);
+    libF27BF28E_gf_SetCameraProperty(lp_player, c_cameraValueYaw, lv_camera.lv_rotation, lv_duration);
+    return true;
+}
+
+void libF27BF28E_gf_SetProgressBarValues (fixed lp_length, fixed lp_current, playergroup lp_players) {
+    // Variable Declarations
+    int lv_bar;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_bar = c_invalidDialogControlId;
+
+    // Implementation
+    lv_bar = libF27BF28E_gv_app.lv_uIEvents.lv_progressBar;
+    libNtve_gf_SetDialogItemMaximumValue(lv_bar, lp_length, lp_players);
+    libNtve_gf_SetDialogItemCurrentValue(lv_bar, lp_current, lp_players);
+}
+
+void libF27BF28E_gf_AddCameraEventUI (int lp_cameraID, string lp_titleInput, int lp_player) {
+    // Variable Declarations
+    fixed lv_duration;
+    fixed lv_wait;
+    string lv_title;
+    int lv_cameraEventCount;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_duration = StringToFixed(libNtve_gf_DialogItemEditValue(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput, lp_player));
+    lv_wait = StringToFixed(libNtve_gf_DialogItemEditValue(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput, lp_player));
+    lv_title = lp_titleInput;
+    lv_cameraEventCount = libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameraID;
+
+    // Implementation
+    if ((lv_title == "")) {
+        lv_title = ("Camera " + IntToString((lp_cameraID + 1)));
+    }
+
+    DialogControlAddItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(lp_player), StringToText(lv_title));
+    if ((DialogControlGetItemCount(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, lp_player) > 0)) {
+        DialogControlSetEnabled(libF27BF28E_gv_app.lv_uIEvents.lv_playButton, PlayerGroupAll(), true);
+    }
+
+    libF27BF28E_gf_AddCameraEventData(lp_player, lp_cameraID, lv_duration, lv_wait);
+}
+
+void libF27BF28E_gf_AddCameraEventData (int lp_player, int lp_iD, fixed lp_duration, fixed lp_wait) {
+    // Automatic Variable Declarations
+    // Implementation
+    libF27BF28E_gf_SetSavedCameraData(lp_player, lp_iD, lp_duration, lp_wait);
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameraID += 1;
+}
+
+void libF27BF28E_gf_SetSavedCameraData (int lp_player, int lp_iD, fixed lp_duration, fixed lp_wait) {
+    // Automatic Variable Declarations
+    // Implementation
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_transitionDuration = lp_duration;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_wait = lp_wait;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_title = libNtve_gf_DialogItemEditValue(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, lp_player);
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_position = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_position;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_angleofAttack = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_angleofAttack;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_depthofField = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_depthofField;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_distance = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_distance;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_shadowClip = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_shadowClip;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_height = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_height;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_roll = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_roll;
+    libF27BF28E_gv_app.lv_players[lp_player].lv_savedCameras.lv_cameras[lp_iD].lv_rotation = libF27BF28E_gv_app.lv_players[lp_player].lv_camera.lv_rotation;
+}
+
+void libF27BF28E_gf_SetCameraTransitionStatusUI (int lp_messageID, string lp_title, fixed lp_transitionTime, fixed lp_wait, int lp_player) {
+    // Variable Declarations
+    text lv_status;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((lp_messageID == 0)) {
+        lv_status = (StringExternal("Param/Value/lib_F27BF28E_C68CB0C4") + StringToText(lp_title) + StringExternal("Param/Value/lib_F27BF28E_959627BA") + FixedToText(lp_transitionTime, 1) + StringExternal("Param/Value/lib_F27BF28E_A80044C8"));
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[0], lv_status, PlayerGroupSingle(lp_player));
+    }
+    else {
+        lv_status = (StringExternal("Param/Value/lib_F27BF28E_D432C396") + FixedToText(lp_wait, 1) + StringExternal("Param/Value/lib_F27BF28E_991D9F40"));
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[1], lv_status, PlayerGroupSingle(lp_player));
+    }
+}
+
+trigger auto_libF27BF28E_gf_AnimateDialogItemSize_Trigger = null;
+int auto_libF27BF28E_gf_AnimateDialogItemSize_lp_animSpeed;
+int auto_libF27BF28E_gf_AnimateDialogItemSize_lp_sizeX;
+int auto_libF27BF28E_gf_AnimateDialogItemSize_lp_sizeY;
+int auto_libF27BF28E_gf_AnimateDialogItemSize_lp_dialogItem;
+playergroup auto_libF27BF28E_gf_AnimateDialogItemSize_lp_players;
+
+void libF27BF28E_gf_AnimateDialogItemSize (int lp_animSpeed, int lp_sizeX, int lp_sizeY, int lp_dialogItem, playergroup lp_players) {
+    auto_libF27BF28E_gf_AnimateDialogItemSize_lp_animSpeed = lp_animSpeed;
+    auto_libF27BF28E_gf_AnimateDialogItemSize_lp_sizeX = lp_sizeX;
+    auto_libF27BF28E_gf_AnimateDialogItemSize_lp_sizeY = lp_sizeY;
+    auto_libF27BF28E_gf_AnimateDialogItemSize_lp_dialogItem = lp_dialogItem;
+    auto_libF27BF28E_gf_AnimateDialogItemSize_lp_players = lp_players;
+
+    if (auto_libF27BF28E_gf_AnimateDialogItemSize_Trigger == null) {
+        auto_libF27BF28E_gf_AnimateDialogItemSize_Trigger = TriggerCreate("auto_libF27BF28E_gf_AnimateDialogItemSize_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libF27BF28E_gf_AnimateDialogItemSize_Trigger, false, false);
+}
+
+bool auto_libF27BF28E_gf_AnimateDialogItemSize_TriggerFunc (bool testConds, bool runActions) {
+    int lp_animSpeed = auto_libF27BF28E_gf_AnimateDialogItemSize_lp_animSpeed;
+    int lp_sizeX = auto_libF27BF28E_gf_AnimateDialogItemSize_lp_sizeX;
+    int lp_sizeY = auto_libF27BF28E_gf_AnimateDialogItemSize_lp_sizeY;
+    int lp_dialogItem = auto_libF27BF28E_gf_AnimateDialogItemSize_lp_dialogItem;
+    playergroup lp_players = auto_libF27BF28E_gf_AnimateDialogItemSize_lp_players;
+
+    // Variable Declarations
+    int lv_currentX;
+    int lv_currentY;
+    int lv_newX;
+    int lv_newY;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    while ((DialogControlGetWidth(lp_dialogItem, PlayerGroupPlayer(lp_players, 1)) != lp_sizeX) && (DialogControlGetHeight(lp_dialogItem, PlayerGroupPlayer(lp_players, 1)) != lp_sizeY)) {
+        lv_currentX = DialogControlGetWidth(lp_dialogItem, PlayerGroupPlayer(lp_players, 1));
+        lv_currentY = DialogControlGetHeight(lp_dialogItem, PlayerGroupPlayer(lp_players, 1));
+        if ((lp_sizeX > lv_currentX)) {
+            lv_newX = (lv_currentX + lp_animSpeed);
+        }
+        else {
+            lv_newX = (lv_currentX - lp_animSpeed);
+        }
+        if ((lp_sizeY > lv_currentY)) {
+            lv_newY = (lv_currentY + lp_animSpeed);
+        }
+        else {
+            lv_newY = (lv_currentY - lp_animSpeed);
+        }
+        DialogControlSetSize(lp_dialogItem, lp_players, lv_newX, lv_newY);
+        Wait(0.0001, c_timeGame);
+    }
+    return true;
+}
+
+trigger auto_libF27BF28E_gf_DialogFadeItem_Trigger = null;
+int auto_libF27BF28E_gf_DialogFadeItem_lp_player;
+int auto_libF27BF28E_gf_DialogFadeItem_lp_dialogItem;
+fixed auto_libF27BF28E_gf_DialogFadeItem_lp_opacity;
+fixed auto_libF27BF28E_gf_DialogFadeItem_lp_duration;
+
+void libF27BF28E_gf_DialogFadeItem (int lp_player, int lp_dialogItem, fixed lp_opacity, fixed lp_duration) {
+    auto_libF27BF28E_gf_DialogFadeItem_lp_player = lp_player;
+    auto_libF27BF28E_gf_DialogFadeItem_lp_dialogItem = lp_dialogItem;
+    auto_libF27BF28E_gf_DialogFadeItem_lp_opacity = lp_opacity;
+    auto_libF27BF28E_gf_DialogFadeItem_lp_duration = lp_duration;
+
+    if (auto_libF27BF28E_gf_DialogFadeItem_Trigger == null) {
+        auto_libF27BF28E_gf_DialogFadeItem_Trigger = TriggerCreate("auto_libF27BF28E_gf_DialogFadeItem_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libF27BF28E_gf_DialogFadeItem_Trigger, false, false);
+}
+
+bool auto_libF27BF28E_gf_DialogFadeItem_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libF27BF28E_gf_DialogFadeItem_lp_player;
+    int lp_dialogItem = auto_libF27BF28E_gf_DialogFadeItem_lp_dialogItem;
+    fixed lp_opacity = auto_libF27BF28E_gf_DialogFadeItem_lp_opacity;
+    fixed lp_duration = auto_libF27BF28E_gf_DialogFadeItem_lp_duration;
+
+    // Automatic Variable Declarations
+    // Implementation
+    DialogControlFadeTransparency(lp_dialogItem, PlayerGroupSingle(lp_player), lp_duration, lp_opacity);
+    return true;
+}
+
+void libF27BF28E_gf_DialogSetValue (int lp_editBox, string lp_newValue, playergroup lp_players) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SetDialogItemEditorValue(lp_editBox, lp_newValue, lp_players);
+}
+
+void libF27BF28E_gf_UpdatePlayerDialogItem (int lp_player, int lp_dialogItem, fixed lp_value) {
+    // Variable Declarations
+    int lv_precision;
+    text lv_text;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_precision = 1;
+
+    // Implementation
+    if ((Round(lp_value) == lp_value)) {
+        lv_text = IntToText(FixedToInt(lp_value));
+    }
+    else {
+        lv_text = FixedToText(lp_value, lv_precision);
+    }
+    libNtve_gf_SetDialogItemText(lp_dialogItem, lv_text, PlayerGroupSingle(lp_player));
+}
+
+void libF27BF28E_gf_DialogAddRacesToDropdown (int lp_dropdown, playergroup lp_players) {
+    // Automatic Variable Declarations
+    // Implementation
+    DialogControlAddItem(lp_dropdown, lp_players, StringExternal("Param/Value/lib_F27BF28E_0FFD275E"));
+    DialogControlAddItem(lp_dropdown, lp_players, StringExternal("Param/Value/lib_F27BF28E_20610CB0"));
+    DialogControlAddItem(lp_dropdown, lp_players, StringExternal("Param/Value/lib_F27BF28E_1D3775DF"));
+    DialogControlAddItem(lp_dropdown, lp_players, StringExternal("Param/Value/lib_F27BF28E_9987B529"));
+    DialogControlSelectItem(lp_dropdown, lp_players, 1);
+}
+
+int libF27BF28E_gf_DialogAddContainer (int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players, string lp_title, string lp_background) {
+    // Automatic Variable Declarations
+    // Implementation
+    DialogCreate(lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, true);
+    if ((lp_title != "")) {
+        DialogSetTitle(DialogLastCreated(), StringToText(lp_title));
+    }
+
+    if ((lp_background != null)) {
+        DialogSetImage(DialogLastCreated(), lp_background);
+        DialogSetImageVisible(DialogLastCreated(), true);
+    }
+    else {
+        DialogSetImageVisible(DialogLastCreated(), false);
+    }
+    return DialogLastCreated();
+}
+
+int libF27BF28E_gf_DialogAddCloseButton (int lp_parentDialog, playergroup lp_players) {
+    // Variable Declarations
+    int lv_button;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_button = c_invalidDialogControlId;
+
+    // Implementation
+    lv_button = libF27BF28E_gf_DialogAddButton(lp_parentDialog, 32, 32, 5, 5, lp_players, c_anchorTopRight, null, null, null, c_triggerImageTypeNone, null);
+    DialogControlFadeTransparency(lv_button, PlayerGroupAll(), 0.0, 100.0);
+    libNtve_gf_SetDialogItemRenderPriority(lv_button, 513, PlayerGroupAll());
+    return lv_button;
+}
+
+int libF27BF28E_gf_DialogAddCloseButtonImage (int lp_parentDialog, playergroup lp_players, string lp_image) {
+    // Variable Declarations
+    int lv_image;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_image = c_invalidDialogControlId;
+
+    // Implementation
+    lv_image = libF27BF28E_gf_DialogAddImage(lp_parentDialog, 32, 32, c_anchorTopRight, 5, 5, null, lp_image, c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    libNtve_gf_SetDialogItemRenderPriority(lv_image, 513, PlayerGroupAll());
+    return lv_image;
+}
+
+int libF27BF28E_gf_DialogAddLabel (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_fontStyle) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateDialogItemLabel(lp_parentDialog, lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, lp_text, ColorWithAlpha(0,0,0,0), false, 2.0);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), lp_fontStyle, lp_players);
+    return DialogControlLastCreated();
+}
+
+int libF27BF28E_gf_DialogAddEditBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, string lp_value, string lp_fontStyle) {
+    // Variable Declarations
+    int lv_box;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_box = c_invalidDialogControlId;
+
+    // Implementation
+    lv_box = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lp_parentDialog, lp_anchor, lp_sizeX, lp_sizeY, lp_offsetX, lp_offsetY, lp_players);
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), lp_fontStyle, lp_players);
+    return DialogControlLastCreated();
+}
+
+int libF27BF28E_gf_DialogAddButton (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, text lp_text, string lp_image, string lp_hoverImage, int lp_imageType, string lp_fontStyle) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateDialogItemButton(lp_parentDialog, lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, StringToText(""), lp_text, "");
+    if ((lp_image != null) && (lp_hoverImage != null)) {
+        libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), lp_image, lp_players);
+        libNtve_gf_SetDialogItemImage2(DialogControlLastCreated(), lp_hoverImage, lp_players);
+        libNtve_gf_SetDialogItemImageType(DialogControlLastCreated(), lp_imageType, lp_players);
+    }
+
+    libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), lp_fontStyle, PlayerGroupAll());
+    return DialogControlLastCreated();
+}
+
+int libF27BF28E_gf_DialogAddImage (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_anchor, int lp_offsetX, int lp_offsetY, text lp_tooltip, string lp_file, int lp_imageType, bool lp_tiledFlag, color lp_tint, int lp_blendMode) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateDialogItemImage(lp_parentDialog, lp_sizeX, lp_sizeY, lp_anchor, lp_offsetX, lp_offsetY, lp_tooltip, lp_file, lp_imageType, lp_tiledFlag, lp_tint, lp_blendMode);
+    return DialogControlLastCreated();
+}
+
+int libF27BF28E_gf_DialogAddPortrait (int lp_parent, int lp_anchor, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, bool lp_isBackgroundVisible, string lp_borderImage, string lp_camera) {
+    // Variable Declarations
+    int lv_portrait;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_portrait = c_invalidDialogControlId;
+
+    // Implementation
+    lv_portrait = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypePortrait, lp_parent, lp_anchor, lp_sizeX, lp_offsetY, lp_offsetX, lp_offsetY, lp_players);
+    libNtve_gf_SetDialogItemBackgroundVisible(lv_portrait, lp_isBackgroundVisible, lp_players);
+    libNtve_gf_SetDialogItemCamera(lv_portrait, lp_camera, lp_players);
+    if ((lp_borderImage != null)) {
+        libNtve_gf_SetDialogItemBorderImage(lv_portrait, lp_borderImage, lp_players);
+    }
+    else {
+        libNtve_gf_SetDialogItemBorderVisible(lv_portrait, false, lp_players);
+    }
+    return lv_portrait;
+}
+
+int libF27BF28E_gf_DialogAddSlider (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_initialValue) {
+    // Variable Declarations
+    int lv_slider;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_slider = c_invalidDialogControlId;
+
+    // Implementation
+    lv_slider = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypeSlider, lp_parentDialog, lp_anchor, lp_sizeX, lp_sizeY, lp_offsetX, lp_offsetY, lp_players);
+    libNtve_gf_SetDialogItemMinimumValue(lv_slider, lp_min, lp_players);
+    libNtve_gf_SetDialogItemMaximumValue(lv_slider, lp_max, lp_players);
+    libNtve_gf_SetDialogItemCurrentValue(lv_slider, lp_initialValue, lp_players);
+    return lv_slider;
+}
+
+int libF27BF28E_gf_DialogAddProgressBar (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players, int lp_anchor, fixed lp_min, fixed lp_max, fixed lp_current) {
+    // Automatic Variable Declarations
+    // Implementation
+    DialogControlCreate(DialogLastCreated(), c_triggerControlTypeProgressBar);
+    DialogControlSetSize(DialogControlLastCreated(), lp_players, lp_sizeX, lp_sizeY);
+    DialogControlSetPosition(DialogControlLastCreated(), lp_players, lp_anchor, lp_offsetX, lp_offsetY);
+    libNtve_gf_SetDialogItemMinimumValue(DialogControlLastCreated(), lp_min, lp_players);
+    libNtve_gf_SetDialogItemMaximumValue(DialogControlLastCreated(), lp_max, lp_players);
+    libNtve_gf_SetDialogItemCurrentValue(DialogControlLastCreated(), lp_current, lp_players);
+    libNtve_gf_SetDialogItemRenderPriority(DialogControlLastCreated(), 513, lp_players);
+    return DialogControlLastCreated();
+}
+
+int libF27BF28E_gf_AddListBox (int lp_parentDialog, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, int lp_anchor, playergroup lp_players) {
+    // Automatic Variable Declarations
+    // Implementation
+    DialogControlCreate(lp_parentDialog, c_triggerControlTypeListBox);
+    libNtve_gf_SetDialogItemImage(DialogControlLastCreated(), "Assets\\Textures\\ui_loadingscreen_playerloadingbar_highlighted.dds", lp_players);
+    DialogControlSetSize(DialogControlLastCreated(), lp_players, lp_sizeX, lp_sizeY);
+    DialogControlSetPosition(DialogControlLastCreated(), lp_players, lp_anchor, lp_offsetX, lp_offsetY);
+    return DialogControlLastCreated();
+}
+
+int libF27BF28E_gf_DialogAddGenericItem (int lp_dialogType, int lp_parentDialog, int lp_anchor, int lp_sizeX, int lp_sizeY, int lp_offsetX, int lp_offsetY, playergroup lp_players) {
+    // Automatic Variable Declarations
+    // Implementation
+    DialogControlCreate(lp_parentDialog, lp_dialogType);
+    DialogControlSetSize(DialogControlLastCreated(), lp_players, lp_sizeX, lp_sizeY);
+    DialogControlSetPosition(DialogControlLastCreated(), lp_players, lp_anchor, lp_offsetX, lp_offsetY);
+    return DialogControlLastCreated();
+}
+
+bool libF27BF28E_gf_IsObs (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((TechTreeUpgradeCount(lp_player, "Obs", c_techCountCompleteOnly) > 0)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+trigger auto_libF27BF28E_gf_SetObsPlayer_Trigger = null;
+
+void libF27BF28E_gf_SetObsPlayer () {
+    if (auto_libF27BF28E_gf_SetObsPlayer_Trigger == null) {
+        auto_libF27BF28E_gf_SetObsPlayer_Trigger = TriggerCreate("auto_libF27BF28E_gf_SetObsPlayer_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libF27BF28E_gf_SetObsPlayer_Trigger, false, false);
+}
+
+bool auto_libF27BF28E_gf_SetObsPlayer_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_playerID;
+
+    // Automatic Variable Declarations
+    playergroup auto4DBF6F25_g;
+    unitgroup autoAD83E665_g;
+    int autoAD83E665_u;
+    unit autoAD83E665_var;
+    unitgroup autoB364384B_g;
+    int autoB364384B_u;
+    unit autoB364384B_var;
+    unitgroup auto68AA57BE_g;
+    int auto68AA57BE_u;
+    unit auto68AA57BE_var;
+
+    // Variable Initialization
+
+    // Implementation
+    auto4DBF6F25_g = PlayerGroupActive();
+    lv_playerID = -1;
+    while (true) {
+        lv_playerID = PlayerGroupNextPlayer(auto4DBF6F25_g, lv_playerID);
+        if (lv_playerID < 0) { break; }
+        if ((PlayerGroupCount(GameAttributePlayersForTeam(1)) > 1) && (GameAttributePlayerValue("1", lv_playerID) == "0002")) {
+            libNtve_gf_SetUpgradeLevelForPlayer(lv_playerID, "Obs", 1);
+            PlayerSetState(lv_playerID, c_playerStateDisplayInLeaderPanel, false);
+            autoAD83E665_g = UnitGroup(null, lv_playerID, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoAD83E665_u = UnitGroupCount(autoAD83E665_g, c_unitCountAll);
+            for (;; autoAD83E665_u -= 1) {
+                autoAD83E665_var = UnitGroupUnitFromEnd(autoAD83E665_g, autoAD83E665_u);
+                if (autoAD83E665_var == null) { break; }
+                UnitRemove(autoAD83E665_var);
+            }
+        }
+        else {
+            libNtve_gf_SetUpgradeLevelForPlayer(lv_playerID, "Player", 1);
+        }
+    }
+    Wait(0.0125, c_timeGame);
+    MeleeSetOption(1, c_meleeOptionDefeat, false);
+    MeleeSetOption(1, c_meleeOptionPoints, false);
+    MeleeSetOption(1, c_meleeOptionReveal, false);
+    MeleeSetOption(1, c_meleeOptionSplitResources, false);
+    MeleeSetOption(1, c_meleeOptionStalemate, false);
+    MeleeSetOption(1, c_meleeOptionVictory, false);
+    MeleeSetOption(1, c_meleeOptionXPGainDisable, false);
+    libNtve_gf_SetUpgradeLevelForPlayer(1, "Obs", 1);
+    PlayerSetState(1, c_playerStateDisplayInLeaderPanel, false);
+    autoB364384B_g = UnitGroup(null, 1, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoB364384B_u = UnitGroupCount(autoB364384B_g, c_unitCountAll);
+    for (;; autoB364384B_u -= 1) {
+        autoB364384B_var = UnitGroupUnitFromEnd(autoB364384B_g, autoB364384B_u);
+        if (autoB364384B_var == null) { break; }
+        UnitRemove(autoB364384B_var);
+    }
+    Wait(1.0, c_timeGame);
+    CreepModify(PointFromName("Start Location 001"), 20.0, false, false);
+    auto68AA57BE_g = UnitGroup(null, 1, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto68AA57BE_u = UnitGroupCount(auto68AA57BE_g, c_unitCountAll);
+    for (;; auto68AA57BE_u -= 1) {
+        auto68AA57BE_var = UnitGroupUnitFromEnd(auto68AA57BE_g, auto68AA57BE_u);
+        if (auto68AA57BE_var == null) { break; }
+        UnitRemove(auto68AA57BE_var);
+    }
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Initialize
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_Initialize_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gf_SetObsPlayer();
+    TriggerExecute(libF27BF28E_gt_InitializeCameraPropertyUI, true, false);
+    TriggerExecute(libF27BF28E_gt_InitializeCameraEventsUI, true, false);
+    TriggerExecute(libF27BF28E_gt_InitializeCameraLocations, true, false);
+    TriggerExecute(libF27BF28E_gt_InitBlizzUI, true, false);
+    TriggerExecute(libF27BF28E_gt_InitHelp, true, false);
+    TriggerExecute(libF27BF28E_gt_EventLoop, true, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_Initialize_Init () {
+    libF27BF28E_gt_Initialize = TriggerCreate("libF27BF28E_gt_Initialize_Func");
+    TriggerAddEventMapInit(libF27BF28E_gt_Initialize);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitHelp
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_InitHelp_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_F27BF28E_3DF83940"));
+    HelpPanelAddTutorial(PlayerGroupAll(), StringExternal("Param/Value/lib_F27BF28E_E63FCAF6"), StringExternal("Param/Value/lib_F27BF28E_1340DBA2"), "Assets\\Textures\\ui_tip_questionmark.dds", "", true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_InitHelp_Init () {
+    libF27BF28E_gt_InitHelp = TriggerCreate("libF27BF28E_gt_InitHelp_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitBlizzUI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_InitBlizzUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_container = c_invalidDialogId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_container = libF27BF28E_gf_DialogAddContainer(0, 0, 0, 0, c_anchorTopLeft, PlayerGroupAll(), "", "");
+    DialogSetFullscreen(lv_container, true);
+    DialogControlCreateFromTemplate(lv_container, c_triggerControlTypePanel, "LeaderPanel/LeaderPanelTemplate");
+    DialogControlSetFullDialog(DialogControlLastCreated(), PlayerGroupAll(), true);
+    DialogControlSetVisible(DialogControlLastCreated(), PlayerGroupAll(), true);
+    libF27BF28E_gv_app.lv_blizzUI.lv_template = DialogControlLastCreated();
+    libF27BF28E_gv_app.lv_blizzUI.lv_container = lv_container;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_InitBlizzUI_Init () {
+    libF27BF28E_gt_InitBlizzUI = TriggerCreate("libF27BF28E_gt_InitBlizzUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleBlizzUI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_ToggleBlizzUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_container = libF27BF28E_gv_app.lv_blizzUI.lv_container;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogIsVisible(lv_container, EventPlayer()) == false)) {
+        DialogSetVisible(lv_container, PlayerGroupSingle(EventPlayer()), true);
+    }
+    else {
+        DialogSetVisible(lv_container, PlayerGroupSingle(EventPlayer()), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_ToggleBlizzUI_Init () {
+    libF27BF28E_gt_ToggleBlizzUI = TriggerCreate("libF27BF28E_gt_ToggleBlizzUI_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_ToggleBlizzUI, c_playerAny, c_keyTab, true, c_keyModifierStateRequire, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: PauseOnMouseOver
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_PauseOnMouseOver_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int autoACC1D93F_val;
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetType(EventDialogControl()) == c_triggerControlTypePortrait))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoACC1D93F_val = EventDialogControlEventType();
+    if (autoACC1D93F_val == c_triggerControlEventTypeMouseEnter) {
+        ActorSend(ActorFromPortrait(PortraitGetTriggerControl(EventDialogControl())), libNtve_gf_TextureVideoSetPaused("CarbotVideo", false));
+        ActorSend(ActorFromPortrait(PortraitGetTriggerControl(EventDialogControl())), libNtve_gf_TextureVideoSetPaused("CarbotVideo2", false));
+        ActorSend(ActorFromPortrait(PortraitGetTriggerControl(EventDialogControl())), libNtve_gf_TextureVideoSetPaused("CarbotVideo22", false));
+        PortraitSetTintColor(PortraitGetTriggerControl(EventDialogControl()), Color(100.00, 100.00, 100.00));
+    }
+    else if (autoACC1D93F_val == c_triggerControlEventTypeMouseExit) {
+        ActorSend(ActorFromPortrait(PortraitGetTriggerControl(EventDialogControl())), libNtve_gf_TextureVideoSetPaused("CarbotVideo", true));
+        ActorSend(ActorFromPortrait(PortraitGetTriggerControl(EventDialogControl())), libNtve_gf_TextureVideoSetPaused("CarbotVideo2", true));
+        ActorSend(ActorFromPortrait(PortraitGetTriggerControl(EventDialogControl())), libNtve_gf_TextureVideoSetPaused("CarbotVideo22", true));
+        PortraitSetTintColor(PortraitGetTriggerControl(EventDialogControl()), Color(50.20, 50.20, 50.20));
+    }
+    else if (autoACC1D93F_val == c_triggerControlEventTypeClick) {
+        libF27BF28E_gf_DialogFadeItem(EventPlayer(), libF27BF28E_gv_app.lv_uIOrders.lv_overlays[0], 0.0, 0.0);
+        libF27BF28E_gf_DialogFadeItem(EventPlayer(), libF27BF28E_gv_app.lv_uIOrders.lv_overlays[0], 100.0, 0.25);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_PauseOnMouseOver_Init () {
+    libF27BF28E_gt_PauseOnMouseOver = TriggerCreate("libF27BF28E_gt_PauseOnMouseOver_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_PauseOnMouseOver, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitializeCameraPropertyUI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_InitializeCameraPropertyUI_Func (bool testConds, bool runActions) {
+    int init_i;
+
+    // Variable Declarations
+    int lv_container;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_checkbox;
+    int lv_saveButton;
+    int lv_resetButton;
+    int lv_resetButtonImage;
+    int lv_playButton;
+    int lv_sizeX;
+    int lv_sizeY;
+    int lv_padding;
+    int lv_itemX;
+    int lv_itemY;
+    int lv_paddingItem;
+    string[16] lv_labels;
+    fixed[16][3] lv_minMaxInit;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    const int autoC71FC9A8_ae = 9;
+    const int autoC71FC9A8_ai = 1;
+    const int auto62D5914B_ae = 9;
+    const int auto62D5914B_ai = 1;
+    const int auto2D3B7ADD_ae = 9;
+    const int auto2D3B7ADD_ai = 1;
+
+    // Variable Initialization
+    lv_container = c_invalidDialogId;
+    lv_closeButton = c_invalidDialogControlId;
+    lv_closeButtonImage = c_invalidDialogControlId;
+    lv_checkbox = c_invalidDialogControlId;
+    lv_saveButton = c_invalidDialogControlId;
+    lv_resetButton = c_invalidDialogControlId;
+    lv_resetButtonImage = c_invalidDialogControlId;
+    lv_playButton = c_invalidDialogControlId;
+    lv_sizeX = 400;
+    lv_sizeY = 280;
+    lv_padding = 20;
+    lv_itemX = 150;
+    lv_itemY = 40;
+    lv_paddingItem = 20;
+    for (init_i = 0; init_i <= 15; init_i += 1) {
+        lv_labels[init_i] = "";
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_container = libF27BF28E_gf_DialogAddContainer(lv_sizeX, lv_sizeY, lv_padding, lv_padding, c_anchorTopLeft, PlayerGroupAll(), "", "Assets\\Textures\\ui_tooltip_frame_protoss.dds");
+    lv_closeButton = libF27BF28E_gf_DialogAddCloseButton(lv_container, PlayerGroupAll());
+    lv_closeButtonImage = libF27BF28E_gf_DialogAddCloseButtonImage(lv_container, PlayerGroupAll(), "Assets\\Textures\\sc2_ui_glues_icons_closebutton.dds");
+    libF27BF28E_gv_app.lv_uICamera.lv_closeButton = lv_closeButton;
+    libF27BF28E_gv_app.lv_uICamera.lv_closeButtonImage = lv_closeButtonImage;
+    lv_checkbox = libF27BF28E_gf_DialogAddLabel(lv_container, 200, 30, 60, 20, PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_41524584"), "EditorFrameList");
+    lv_checkbox = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypeCheckBox, lv_container, c_anchorBottomLeft, 32, 32, 20, 20, PlayerGroupAll());
+    libNtve_gf_SetDialogItemChecked(lv_checkbox, true, PlayerGroupAll());
+    libF27BF28E_gv_app.lv_uICamera.lv_wASDCheckbox = lv_checkbox;
+    lv_resetButton = libF27BF28E_gf_DialogAddButton(lv_container, 32, 32, (32 + 5), 5, PlayerGroupAll(), c_anchorTopRight, StringExternal("Param/Value/lib_F27BF28E_0A6A01CA"), null, null, c_triggerImageTypeNone, "CameraPropertyButtons");
+    DialogControlFadeTransparency(lv_resetButton, PlayerGroupAll(), 0.0, 100.0);
+    lv_resetButtonImage = libF27BF28E_gf_DialogAddImage(lv_container, 24, 24, c_anchorTopRight, (32 + 9), 9, null, "Assets\\Textures\\ui-editoricon-overviewmanager_refresh.dds", c_triggerImageTypeNormal, false, ColorWithAlpha(0.00, 0.00, 0.00, 0.00), c_triggerBlendModeNormal);
+    libF27BF28E_gv_app.lv_uICamera.lv_resetButton = lv_resetButton;
+    libF27BF28E_gv_app.lv_uICamera.lv_resetButtonImage = lv_resetButtonImage;
+    lv_labels[0] = "position";
+    lv_labels[1] = "move speed";
+    lv_labels[2] = "";
+    lv_labels[3] = "roll";
+    lv_labels[4] = "height";
+    lv_labels[5] = "rotation";
+    lv_labels[6] = "distance";
+    lv_labels[7] = "angle of attack";
+    lv_labels[8] = "shadow clip";
+    lv_labels[9] = "depth of field";
+    lv_i = 0;
+    for ( ; ( (autoC71FC9A8_ai >= 0 && lv_i <= autoC71FC9A8_ae) || (autoC71FC9A8_ai < 0 && lv_i >= autoC71FC9A8_ae) ) ; lv_i += autoC71FC9A8_ai ) {
+        if ((lv_labels[lv_i] == "")) {
+            libF27BF28E_gf_AddToCameraDialogCount(0, c_invalidDialogControlId);
+        }
+        else {
+            libF27BF28E_gf_AddPropertyLabel(0, lv_container, lv_itemX, lv_itemY, c_anchorTopLeft, lv_paddingItem, StringToText(lv_labels[lv_i]), "EditorPropertyList", PlayerGroupAll());
+        }
+    }
+    lv_i = 0;
+    for ( ; ( (auto62D5914B_ai >= 0 && lv_i <= auto62D5914B_ae) || (auto62D5914B_ai < 0 && lv_i >= auto62D5914B_ae) ) ; lv_i += auto62D5914B_ai ) {
+        lv_labels[lv_i] = "0";
+        lv_labels[2] = "";
+        libF27BF28E_gf_AddPropertyLabel(1, lv_container, 50, lv_itemY, c_anchorTopLeft, lv_paddingItem, StringToText(lv_labels[lv_i]), "EditorPropertyList", PlayerGroupAll());
+    }
+    DialogControlSetSize(libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[0], PlayerGroupAll(), 200, lv_itemY);
+    lv_i = 0;
+    lv_minMaxInit[0][0] = -1.0;
+    lv_minMaxInit[0][1] = -1.0;
+    lv_minMaxInit[0][2] = -1.0;
+    lv_minMaxInit[1][0] = 1.0;
+    lv_minMaxInit[1][1] = 10.0;
+    lv_minMaxInit[1][2] = 2.0;
+    lv_minMaxInit[2][0] = -1.0;
+    lv_minMaxInit[2][1] = -1.0;
+    lv_minMaxInit[2][2] = -1.0;
+    lv_minMaxInit[3][0] = -45.0;
+    lv_minMaxInit[3][1] = 45.0;
+    lv_minMaxInit[3][2] = 0.0;
+    lv_minMaxInit[4][0] = -10.0;
+    lv_minMaxInit[4][1] = 10.0;
+    lv_minMaxInit[4][2] = 0.0;
+    lv_minMaxInit[5][0] = 0.0;
+    lv_minMaxInit[5][1] = 360.0;
+    lv_minMaxInit[5][2] = 90.0;
+    lv_minMaxInit[6][0] = 10.0;
+    lv_minMaxInit[6][1] = 200.0;
+    lv_minMaxInit[6][2] = 34.0;
+    lv_minMaxInit[7][0] = 0.0;
+    lv_minMaxInit[7][1] = 90.0;
+    lv_minMaxInit[7][2] = 56.0;
+    lv_minMaxInit[8][0] = 0.0;
+    lv_minMaxInit[8][1] = 300.0;
+    lv_minMaxInit[8][2] = 75.0;
+    lv_minMaxInit[9][0] = 0.0;
+    lv_minMaxInit[9][1] = 1.0;
+    lv_minMaxInit[9][2] = 0.0;
+    lv_i = 0;
+    for ( ; ( (auto2D3B7ADD_ai >= 0 && lv_i <= auto2D3B7ADD_ae) || (auto2D3B7ADD_ai < 0 && lv_i >= auto2D3B7ADD_ae) ) ; lv_i += auto2D3B7ADD_ai ) {
+        if ((lv_minMaxInit[lv_i][0] == -1.0) && (lv_minMaxInit[lv_i][1] == -1.0) && (lv_minMaxInit[lv_i][2] == -1.0)) {
+            libF27BF28E_gf_AddToCameraDialogCount(2, libF27BF28E_gf_DialogAddLabel(c_invalidDialogId, 0, 0, 0, 0, PlayerGroupEmpty(), c_anchorCenter, null, "EditorPropertyList"));
+            continue;
+        }
+        else {
+            libF27BF28E_gf_AddSlider(lv_container, 180, lv_itemY, c_anchorTopLeft, lv_minMaxInit[lv_i][2], lv_minMaxInit[lv_i][0], lv_minMaxInit[lv_i][1], lv_padding, PlayerGroupAll());
+        }
+    }
+    libF27BF28E_gv_app.lv_uICamera.lv_container = lv_container;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_InitializeCameraPropertyUI_Init () {
+    libF27BF28E_gt_InitializeCameraPropertyUI = TriggerCreate("libF27BF28E_gt_InitializeCameraPropertyUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleCameraUI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_ToggleCameraUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_cameraUI;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_cameraUI = libF27BF28E_gv_app.lv_uICamera.lv_container;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogIsVisible(lv_cameraUI, EventPlayer()) == false)) {
+        DialogSetVisible(libF27BF28E_gv_app.lv_uICamera.lv_container, PlayerGroupSingle(EventPlayer()), true);
+    }
+    else {
+        DialogSetVisible(libF27BF28E_gv_app.lv_uICamera.lv_container, PlayerGroupSingle(EventPlayer()), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_ToggleCameraUI_Init () {
+    libF27BF28E_gt_ToggleCameraUI = TriggerCreate("libF27BF28E_gt_ToggleCameraUI_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_ToggleCameraUI, c_playerAny, c_keyPeriod, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: HandleMouseOverCameraProperty
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_HandleMouseOverCameraProperty_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_itemID;
+    int lv_usedItemID;
+    int lv_slider;
+    int lv_propName;
+
+    // Automatic Variable Declarations
+    int auto02D39E38_val;
+    const int auto26419AAE_ae = 15;
+    const int auto26419AAE_ai = 1;
+
+    // Variable Initialization
+    lv_slider = c_invalidDialogControlId;
+    lv_propName = c_invalidDialogControlId;
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == libF27BF28E_gv_app.lv_uICamera.lv_container))) {
+            return false;
+        }
+
+        if (!((DialogControlGetType(EventDialogControl()) == c_triggerControlTypeButton))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() != libF27BF28E_gv_app.lv_uICamera.lv_closeButton))) {
+            return false;
+        }
+
+        if (!((EventDialogControl() != libF27BF28E_gv_app.lv_uICamera.lv_resetButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_usedItemID = ((DialogControlGetOffsetY(EventDialogControl(), EventPlayer()) - 10) / 20);
+    auto02D39E38_val = EventDialogControlEventType();
+    if (auto02D39E38_val == c_triggerControlEventTypeMouseEnter) {
+        lv_itemID = 0;
+        for ( ; ( (auto26419AAE_ai >= 0 && lv_itemID <= auto26419AAE_ae) || (auto26419AAE_ai < 0 && lv_itemID >= auto26419AAE_ae) ) ; lv_itemID += auto26419AAE_ai ) {
+            lv_slider = libF27BF28E_gv_app.lv_uICamera.lv_sliders[lv_itemID];
+            lv_propName = libF27BF28E_gv_app.lv_uICamera.lv_propertyNames[lv_itemID];
+            if ((lv_itemID == lv_usedItemID)) {
+                libNtve_gf_SetDialogItemStyle(lv_propName, "_CameraPropertyNameHover", PlayerGroupAll());
+                libF27BF28E_gf_DialogFadeItem(EventPlayer(), lv_slider, 0.0, 0.5);
+                libNtve_gf_SetDialogItemRenderPriority(lv_slider, 512, PlayerGroupAll());
+                DialogControlSetEnabled(lv_slider, PlayerGroupAll(), true);
+            }
+            else {
+                libNtve_gf_SetDialogItemStyle(lv_propName, "EditorPropertyList", PlayerGroupAll());
+                libF27BF28E_gf_DialogFadeItem(EventPlayer(), lv_slider, 100.0, 0.5);
+                libNtve_gf_SetDialogItemRenderPriority(lv_slider, 511, PlayerGroupAll());
+                DialogControlSetEnabled(lv_slider, PlayerGroupAll(), false);
+            }
+        }
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_HandleMouseOverCameraProperty_Init () {
+    libF27BF28E_gt_HandleMouseOverCameraProperty = TriggerCreate("libF27BF28E_gt_HandleMouseOverCameraProperty_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_HandleMouseOverCameraProperty, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ResetCamera
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_ResetCamera_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    libF27BF28E_gs_CameraProperties lv_input;
+    int lv_resetSpeed;
+    int lv_slider;
+    int lv_itemID;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_input.lv_title = "";
+    lv_input.lv_rotation = 90.0;
+    lv_input.lv_distance = 34.0;
+    lv_input.lv_angleofAttack = 56.0;
+    lv_input.lv_shadowClip = 8.0;
+    lv_resetSpeed = 1;
+    lv_slider = c_invalidDialogControlId;
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uICamera.lv_resetButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_input.lv_angleofAttack = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_angleofAttack;
+    lv_input.lv_depthofField = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_depthofField;
+    lv_input.lv_distance = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_distance;
+    lv_input.lv_shadowClip = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_shadowClip;
+    lv_input.lv_height = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_height;
+    lv_input.lv_rotation = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_rotation;
+    lv_input.lv_roll = libF27BF28E_gv_app.lv_players[EventPlayer()].lv_camera.lv_roll;
+    DialogControlSetEnabled(EventDialogControl(), PlayerGroupSingle(EventPlayer()), false);
+    while (((lv_input.lv_angleofAttack != 56.0) || (lv_input.lv_depthofField != 0.0) || (lv_input.lv_distance != 34.0) || (lv_input.lv_shadowClip != 75.0) || (lv_input.lv_height != 0.0) || (lv_input.lv_roll != 0.0) || (lv_input.lv_rotation != 90.0))) {
+        if ((lv_input.lv_angleofAttack < 56.0)) {
+            lv_input.lv_angleofAttack = (RoundI(lv_input.lv_angleofAttack) + lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValuePitch, lv_input.lv_angleofAttack, 0.5);
+        }
+        else if ((lv_input.lv_angleofAttack > 56.0)) {
+            lv_input.lv_angleofAttack = (RoundI(lv_input.lv_angleofAttack) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValuePitch, lv_input.lv_angleofAttack, 0.5);
+        }
+        if ((lv_input.lv_depthofField > 0.0)) {
+            lv_input.lv_depthofField = (RoundI(lv_input.lv_depthofField) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueDepthOfField, lv_input.lv_depthofField, 0.5);
+        }
+
+        if ((lv_input.lv_distance < 34.0)) {
+            lv_input.lv_distance = (RoundI(lv_input.lv_distance) + lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueDistance, lv_input.lv_distance, 0.5);
+        }
+        else if ((lv_input.lv_distance > 34.0)) {
+            lv_input.lv_distance = (RoundI(lv_input.lv_distance) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueDistance, lv_input.lv_distance, 0.5);
+        }
+        if ((lv_input.lv_shadowClip < 75.0)) {
+            lv_input.lv_shadowClip = (RoundI(lv_input.lv_shadowClip) + lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueFocalDepth, lv_input.lv_shadowClip, 0.5);
+        }
+        else if ((lv_input.lv_shadowClip > 75.0)) {
+            lv_input.lv_shadowClip = (RoundI(lv_input.lv_shadowClip) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueFocalDepth, lv_input.lv_shadowClip, 0.5);
+        }
+        if ((lv_input.lv_height < 0.0)) {
+            lv_input.lv_height = (RoundI(lv_input.lv_height) + lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueHeightOffset, lv_input.lv_height, 0.5);
+        }
+        else if ((lv_input.lv_height > 0.0)) {
+            lv_input.lv_height = (RoundI(lv_input.lv_height) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueHeightOffset, lv_input.lv_height, 0.5);
+        }
+        if ((lv_input.lv_roll < 0.0)) {
+            lv_input.lv_roll = (RoundI(lv_input.lv_roll) + lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueRoll, lv_input.lv_roll, 0.5);
+        }
+        else if ((lv_input.lv_roll > 0.0)) {
+            lv_input.lv_roll = (RoundI(lv_input.lv_roll) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueRoll, lv_input.lv_roll, 0.5);
+        }
+        if ((lv_input.lv_rotation < 90.0)) {
+            lv_input.lv_rotation = (RoundI(lv_input.lv_rotation) + lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueYaw, lv_input.lv_rotation, 0.5);
+        }
+        else if ((lv_input.lv_rotation > 90.0)) {
+            lv_input.lv_rotation = (RoundI(lv_input.lv_rotation) - lv_resetSpeed);
+            libF27BF28E_gf_SetCameraProperty(EventPlayer(), c_cameraValueYaw, lv_input.lv_rotation, 0.5);
+        }
+        libNtve_gf_SetDialogItemRotation(libF27BF28E_gv_app.lv_uICamera.lv_resetButtonImage, lv_i, PlayerGroupSingle(EventPlayer()));
+        lv_i = (lv_i + 5);
+        Wait(0.0001, c_timeGame);
+    }
+    libNtve_gf_SetDialogItemRotation(libF27BF28E_gv_app.lv_uICamera.lv_resetButtonImage, 0, PlayerGroupSingle(EventPlayer()));
+    DialogControlSetEnabled(EventDialogControl(), PlayerGroupSingle(EventPlayer()), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_ResetCamera_Init () {
+    libF27BF28E_gt_ResetCamera = TriggerCreate("libF27BF28E_gt_ResetCamera_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_ResetCamera, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CloseButtonEvents
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_CloseButtonEvents_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_image;
+
+    // Automatic Variable Declarations
+    int autoF0FF8024_val;
+    int auto709E2768_val;
+
+    // Variable Initialization
+    lv_image = c_invalidDialogControlId;
+
+    // Conditions
+    if (testConds) {
+        if (!(((EventDialogControl() == libF27BF28E_gv_app.lv_uICamera.lv_closeButton) || (EventDialogControl() == libF27BF28E_gv_app.lv_uIEvents.lv_closeButton) || (EventDialogControl() == libF27BF28E_gv_app.lv_uIOrders.lv_closeButton)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoF0FF8024_val = DialogControlGetDialog(EventDialogControl());
+    if (autoF0FF8024_val == libF27BF28E_gv_app.lv_uICamera.lv_container) {
+        lv_image = libF27BF28E_gv_app.lv_uICamera.lv_closeButtonImage;
+    }
+    else if (autoF0FF8024_val == libF27BF28E_gv_app.lv_uIEvents.lv_container) {
+        lv_image = libF27BF28E_gv_app.lv_uIEvents.lv_closeButtonImage;
+    }
+    else if (autoF0FF8024_val == libF27BF28E_gv_app.lv_uIOrders.lv_container) {
+        lv_image = libF27BF28E_gv_app.lv_uIOrders.lv_closeButtonImage;
+    }
+    else {
+    }
+    auto709E2768_val = EventDialogControlEventType();
+    if (auto709E2768_val == c_triggerControlEventTypeMouseEnter) {
+        libNtve_gf_SetDialogItemImage(lv_image, "Assets\\Textures\\sc2_ui_glues_icons_closebuttonhover.dds", PlayerGroupAll());
+    }
+    else if (auto709E2768_val == c_triggerControlEventTypeMouseExit) {
+        libNtve_gf_SetDialogItemImage(lv_image, "Assets\\Textures\\sc2_ui_glues_icons_closebutton.dds", PlayerGroupAll());
+    }
+    else if (auto709E2768_val == c_triggerControlEventTypeClick) {
+        DialogSetVisible(DialogControlGetDialog(EventDialogControl()), PlayerGroupSingle(EventPlayer()), false);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_CloseButtonEvents_Init () {
+    libF27BF28E_gt_CloseButtonEvents = TriggerCreate("libF27BF28E_gt_CloseButtonEvents_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_CloseButtonEvents, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ResetButtonEvents
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_ResetButtonEvents_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_image;
+
+    // Automatic Variable Declarations
+    int auto160EB695_val;
+
+    // Variable Initialization
+    lv_image = c_invalidDialogControlId;
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uICamera.lv_resetButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_image = libF27BF28E_gv_app.lv_uICamera.lv_resetButtonImage;
+    auto160EB695_val = EventDialogControlEventType();
+    if (auto160EB695_val == c_triggerControlEventTypeMouseEnter) {
+        libNtve_gf_SetDialogItemDesaturated(lv_image, true, PlayerGroupSingle(EventPlayer()));
+    }
+    else if (auto160EB695_val == c_triggerControlEventTypeMouseExit) {
+        libNtve_gf_SetDialogItemDesaturated(lv_image, false, PlayerGroupSingle(EventPlayer()));
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_ResetButtonEvents_Init () {
+    libF27BF28E_gt_ResetButtonEvents = TriggerCreate("libF27BF28E_gt_ResetButtonEvents_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_ResetButtonEvents, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: HandleSlider
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_HandleSlider_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_usedItemID;
+    int lv_valueLabel;
+    fixed lv_newValue;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_valueLabel = c_invalidDialogControlId;
+
+    // Conditions
+    if (testConds) {
+        if (!((DialogControlGetDialog(EventDialogControl()) == libF27BF28E_gv_app.lv_uICamera.lv_container))) {
+            return false;
+        }
+
+        if (!((DialogControlGetType(EventDialogControl()) == c_triggerControlTypeSlider))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_usedItemID = ((DialogControlGetOffsetY(EventDialogControl(), EventPlayer()) - 10) / 20);
+    lv_valueLabel = libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[lv_usedItemID];
+    lv_newValue = libNtve_gf_DialogItemValue(EventDialogControl(), EventPlayer());
+    libF27BF28E_gf_SetPropertyFromSlider(lv_usedItemID, lv_newValue, EventPlayer());
+    libNtve_gf_SetDialogItemText(lv_valueLabel, FixedToText(lv_newValue, 1), PlayerGroupAll());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_HandleSlider_Init () {
+    libF27BF28E_gt_HandleSlider = TriggerCreate("libF27BF28E_gt_HandleSlider_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_HandleSlider, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitializeCameraEventsUI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_InitializeCameraEventsUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+    int lv_parentContainer;
+    int lv_title;
+    int lv_closeButton;
+    int lv_closeButtonImage;
+    int lv_sizeX;
+    int lv_sizeY;
+    int lv_padding;
+    int lv_listbox;
+    int lv_textInput;
+    int lv_buttonX;
+    int lv_buttonY;
+    int lv_addButton;
+    int lv_deleteButton;
+    int lv_playButton;
+    int lv_stopButton;
+    int lv_editButton;
+    int lv_progressBar;
+    int[2] lv_itemSizeXY;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_container = c_invalidDialogId;
+    lv_parentContainer = libF27BF28E_gv_app.lv_uICamera.lv_container;
+    lv_title = c_invalidDialogControlId;
+    lv_closeButton = c_invalidDialogControlId;
+    lv_closeButtonImage = c_invalidDialogControlId;
+    lv_sizeX = 400;
+    lv_sizeY = 500;
+    lv_padding = 20;
+    lv_listbox = c_invalidDialogControlId;
+    lv_textInput = c_invalidDialogControlId;
+    lv_buttonX = 100;
+    lv_buttonY = 30;
+    lv_addButton = c_invalidDialogControlId;
+    lv_deleteButton = c_invalidDialogControlId;
+    lv_playButton = c_invalidDialogControlId;
+    lv_stopButton = c_invalidDialogControlId;
+    lv_editButton = c_invalidDialogControlId;
+    lv_progressBar = c_invalidDialogControlId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_container = libF27BF28E_gf_DialogAddContainer(lv_sizeX, lv_sizeY, lv_padding, (DialogGetHeight(lv_parentContainer) + lv_padding), DialogGetAnchor(lv_parentContainer), PlayerGroupAll(), "", "Assets\\Textures\\ui_tooltip_frame_terran.dds");
+    lv_closeButton = libF27BF28E_gf_DialogAddCloseButton(lv_container, PlayerGroupAll());
+    lv_closeButtonImage = libF27BF28E_gf_DialogAddCloseButtonImage(lv_container, PlayerGroupAll(), "Assets\\Textures\\sc2_ui_glues_icons_closebutton.dds");
+    libF27BF28E_gv_app.lv_uIEvents.lv_closeButton = lv_closeButton;
+    libF27BF28E_gv_app.lv_uIEvents.lv_closeButtonImage = lv_closeButtonImage;
+    lv_title = libF27BF28E_gf_DialogAddLabel(lv_container, lv_sizeX, 25, 0, lv_padding, PlayerGroupAll(), c_anchorTop, StringExternal("Param/Value/lib_F27BF28E_8567993F"), "_TimelineTitle");
+    lv_addButton = libF27BF28E_gf_DialogAddButton(lv_container, lv_buttonX, lv_buttonY, lv_padding, (30 + lv_padding), PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_FAAE4DBC"), "Assets\\Textures\\ui_mission_hackingbuttonglow_normalpressed_protoss.dds", "Assets\\Textures\\ui_mission_hackingbuttonglow_normaloverpressedover_protoss.dds", c_triggerImageTypeEndCap, "_CameraPropertyButtons");
+    libF27BF28E_gv_app.lv_uIEvents.lv_addButton = lv_addButton;
+    lv_deleteButton = libF27BF28E_gf_DialogAddButton(lv_container, lv_buttonX, lv_buttonY, ((lv_buttonX * 1) + (lv_padding / 2)), (30 + lv_padding), PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_6DB129B6"), "Assets\\Textures\\ui_mission_hackingbuttonglow_normalpressed_protoss.dds", "Assets\\Textures\\ui_mission_hackingbuttonglow_normaloverpressedover_protoss.dds", c_triggerImageTypeEndCap, "_CameraPropertyButtons");
+    libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton = lv_deleteButton;
+    lv_playButton = libF27BF28E_gf_DialogAddButton(lv_container, lv_buttonX, lv_buttonY, lv_padding, lv_padding, PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_19283FBA"), "Assets\\Textures\\ui_mission_hackingbuttonglow_normalpressed_protoss.dds", "Assets\\Textures\\ui_mission_hackingbuttonglow_normaloverpressedover_protoss.dds", c_triggerImageTypeEndCap, "_CameraPropertyButtons");
+    DialogControlSetEnabled(lv_playButton, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_playButton = lv_playButton;
+    lv_stopButton = libF27BF28E_gf_DialogAddButton(lv_container, lv_buttonX, lv_buttonY, ((lv_buttonX * 1) + (lv_padding / 2)), lv_padding, PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_0DF9B236"), "Assets\\Textures\\ui_mission_hackingbuttonglow_normalpressed_protoss.dds", "Assets\\Textures\\ui_mission_hackingbuttonglow_normaloverpressedover_protoss.dds", c_triggerImageTypeEndCap, "_CameraPropertyButtons");
+    DialogControlSetEnabled(lv_stopButton, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_stopButton = lv_stopButton;
+    lv_editButton = libF27BF28E_gf_DialogAddButton(lv_container, lv_buttonX, lv_buttonY, (lv_buttonX * 2), (30 + lv_padding), PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_4DD7D535"), "Assets\\Textures\\ui_mission_hackingbuttonglow_normalpressed_protoss.dds", "Assets\\Textures\\ui_mission_hackingbuttonglow_normaloverpressedover_protoss.dds", c_triggerImageTypeEndCap, "_CameraPropertyButtons");
+    libF27BF28E_gv_app.lv_uIEvents.lv_editButton = lv_editButton;
+    lv_progressBar = libF27BF28E_gf_DialogAddProgressBar(lv_container, (lv_sizeX - (lv_padding * 2)), 12, lv_padding, (lv_padding + 70), PlayerGroupAll(), c_anchorBottomLeft, 0.0, 60.0, 30.0);
+    DialogControlSetVisible(lv_progressBar, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_progressBar = lv_progressBar;
+    libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[0] = libF27BF28E_gf_DialogAddLabel(lv_container, lv_sizeX, 80, lv_padding, (lv_padding + 75), PlayerGroupAll(), c_anchorBottomLeft, StringToText(""), "EditorPropertyList");
+    libF27BF28E_gv_app.lv_uIEvents.lv_statusBar[1] = libF27BF28E_gf_DialogAddLabel(lv_container, lv_sizeX, 80, lv_padding, (lv_padding + 55), PlayerGroupAll(), c_anchorBottomLeft, StringToText(""), "EditorPropertyList");
+    lv_textInput = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lv_container, c_anchorBottomLeft, (lv_sizeX - (lv_padding * 2)), 40, lv_padding, (lv_padding + 95), PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lv_textInput, "EditorPropertyList", PlayerGroupAll());
+    DialogControlSetVisible(lv_textInput, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_titleInput = lv_textInput;
+    lv_itemSizeXY[0] = 50;
+    lv_textInput = libF27BF28E_gf_DialogAddLabel(lv_container, lv_sizeX, 50, (lv_padding + 5), (lv_padding + 55), PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_D9DDC6EF"), "EditorPropertyList");
+    DialogControlSetVisible(lv_textInput, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitLabel = lv_textInput;
+    lv_textInput = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lv_container, c_anchorBottomLeft, lv_itemSizeXY[0], 40, (lv_padding + 70), (lv_padding + 60), PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lv_textInput, "EditorPropertyList", PlayerGroupAll());
+    DialogControlSetVisible(lv_textInput, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput = lv_textInput;
+    lv_textInput = libF27BF28E_gf_DialogAddLabel(lv_container, lv_sizeX, 50, 150, (lv_padding + 55), PlayerGroupAll(), c_anchorBottomLeft, StringExternal("Param/Value/lib_F27BF28E_D6A9AE20"), "EditorPropertyList");
+    DialogControlSetVisible(lv_textInput, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationLabel = lv_textInput;
+    lv_textInput = libF27BF28E_gf_DialogAddGenericItem(c_triggerControlTypeEditBox, lv_container, c_anchorBottomLeft, lv_itemSizeXY[0], 40, 185, (lv_padding + 60), PlayerGroupAll());
+    libNtve_gf_SetDialogItemStyle(lv_textInput, "EditorPropertyList", PlayerGroupAll());
+    DialogControlSetVisible(lv_textInput, PlayerGroupAll(), false);
+    libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput = lv_textInput;
+    lv_listbox = libF27BF28E_gf_AddListBox(lv_container, (lv_sizeX - 20), (lv_sizeY - 200), 10, 50, c_anchorTopLeft, PlayerGroupAll());
+    libNtve_gf_SetDialogItemImage(lv_listbox, "Assets\\Textures\\blank.dds", PlayerGroupAll());
+    libF27BF28E_gv_app.lv_uIEvents.lv_listbox = lv_listbox;
+    libF27BF28E_gv_app.lv_uIEvents.lv_container = lv_container;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_InitializeCameraEventsUI_Init () {
+    libF27BF28E_gt_InitializeCameraEventsUI = TriggerCreate("libF27BF28E_gt_InitializeCameraEventsUI_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: ToggleEventsUI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_ToggleEventsUI_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_container;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_container = libF27BF28E_gv_app.lv_uIEvents.lv_container;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogIsVisible(lv_container, EventPlayer()) == false)) {
+        DialogSetVisible(lv_container, PlayerGroupSingle(EventPlayer()), true);
+    }
+    else {
+        DialogSetVisible(lv_container, PlayerGroupSingle(EventPlayer()), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_ToggleEventsUI_Init () {
+    libF27BF28E_gt_ToggleEventsUI = TriggerCreate("libF27BF28E_gt_ToggleEventsUI_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_ToggleEventsUI, c_playerAny, c_keyComma, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: AddEventButton
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_AddEventButton_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    int lv_queueCount;
+    int lv_textInput;
+    string lv_inputString;
+    int lv_selectedCameraID;
+    fixed lv_duration;
+    fixed lv_wait;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = EventPlayer();
+    lv_queueCount = libF27BF28E_gv_app.lv_players[lv_player].lv_savedCameras.lv_cameraID;
+    lv_textInput = libF27BF28E_gv_app.lv_uIEvents.lv_titleInput;
+    lv_inputString = libNtve_gf_DialogItemEditValue(lv_textInput, EventPlayer());
+    lv_selectedCameraID = (DialogControlGetSelectedItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, lv_player) - 1);
+    lv_duration = StringToFixed(libNtve_gf_DialogItemEditValue(libF27BF28E_gv_app.lv_uIEvents.lv_cameraDurationInput, EventPlayer()));
+    lv_wait = StringToFixed(libNtve_gf_DialogItemEditValue(libF27BF28E_gv_app.lv_uIEvents.lv_cameraWaitInput, EventPlayer()));
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uIEvents.lv_addButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libF27BF28E_gv_app.lv_players[EventPlayer()].lv_flags.lv_isEditingSavedCamera == false)) {
+        if ((DialogControlIsVisible(lv_textInput, EventPlayer()) == false)) {
+            libF27BF28E_gf_ToggleTitleAndTimingUI(EventPlayer(), true);
+            libNtve_gf_SetDialogItemEditorValue(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, ("Camera " + IntToString((lv_queueCount + 1))), PlayerGroupSingle(lv_player));
+        }
+        else {
+            libF27BF28E_gf_AddCameraEventUI(lv_queueCount, lv_inputString, EventPlayer());
+            libF27BF28E_gf_ToggleTitleAndTimingUI(EventPlayer(), false);
+        }
+    }
+    else {
+        libF27BF28E_gf_SetSavedCameraData(EventPlayer(), lv_selectedCameraID, lv_duration, lv_wait);
+        libF27BF28E_gf_EditSavedCameraListItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, libNtve_gf_DialogItemEditValue(lv_textInput, EventPlayer()), lv_selectedCameraID, EventPlayer());
+        libF27BF28E_gf_ToggleEditingSavedCameraUI(EventPlayer(), lv_queueCount, false);
+        libF27BF28E_gf_ToggleTitleAndTimingUI(EventPlayer(), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_AddEventButton_Init () {
+    libF27BF28E_gt_AddEventButton = TriggerCreate("libF27BF28E_gt_AddEventButton_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_AddEventButton, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: DeleteEventButton
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_DeleteEventButton_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    int lv_queueCount;
+    int lv_selectedCameraID;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = EventPlayer();
+    lv_queueCount = libF27BF28E_gv_app.lv_players[lv_player].lv_savedCameras.lv_cameraID;
+    lv_selectedCameraID = (DialogControlGetSelectedItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, lv_player) - 1);
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uIEvents.lv_deleteButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((DialogControlIsVisible(libF27BF28E_gv_app.lv_uIEvents.lv_titleInput, EventPlayer()) == false)) {
+        if ((lv_selectedCameraID == -1)) {
+            lv_selectedCameraID = 0;
+        }
+
+        DialogControlRemoveItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, PlayerGroupSingle(EventPlayer()), (lv_selectedCameraID + 1));
+        libF27BF28E_gf_DeleteSavedCameraData(EventPlayer(), lv_selectedCameraID);
+    }
+    else {
+        libF27BF28E_gf_ToggleEditingSavedCameraUI(EventPlayer(), lv_queueCount, false);
+        libF27BF28E_gf_ToggleTitleAndTimingUI(EventPlayer(), false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_DeleteEventButton_Init () {
+    libF27BF28E_gt_DeleteEventButton = TriggerCreate("libF27BF28E_gt_DeleteEventButton_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_DeleteEventButton, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: EditButton
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_EditButton_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_selectedCameraID;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_selectedCameraID = (DialogControlGetSelectedItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, EventPlayer()) - 1);
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uIEvents.lv_editButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libF27BF28E_gv_app.lv_players[EventPlayer()].lv_flags.lv_isEditingSavedCamera == false)) {
+        libF27BF28E_gf_ToggleEditingSavedCameraUI(EventPlayer(), lv_selectedCameraID, true);
+        libF27BF28E_gf_LoadSavedCamera(EventPlayer(), lv_selectedCameraID, true);
+        libF27BF28E_gf_ToggleTitleAndTimingUI(EventPlayer(), true);
+    }
+    else {
+        libF27BF28E_gf_ToggleEditingSavedCameraUI(EventPlayer(), lv_selectedCameraID, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_EditButton_Init () {
+    libF27BF28E_gt_EditButton = TriggerCreate("libF27BF28E_gt_EditButton_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_EditButton, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: StopButton
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_StopButton_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uIEvents.lv_stopButton))) {
+            return false;
+        }
+
+        if (!((libF27BF28E_gv_app.lv_players[EventPlayer()].lv_flags.lv_isPlayingTimeline == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TriggerStop(libF27BF28E_gt_PlaybackQueueButton);
+    CameraSave(EventPlayer());
+    libF27BF28E_gf_TogglePlaybackTimelineUI(EventPlayer(), false);
+    libF27BF28E_gv_app.lv_players[EventPlayer()].lv_flags.lv_isPlayingTimeline = false;
+    Wait(0.0001, c_timeGame);
+    CameraRestore(EventPlayer(), 0.0, 0.0, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_StopButton_Init () {
+    libF27BF28E_gt_StopButton = TriggerCreate("libF27BF28E_gt_StopButton_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_StopButton, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: PlaybackQueueHotkey
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_PlaybackQueueHotkey_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libF27BF28E_gv_app.lv_players[EventPlayer()].lv_flags.lv_isPlayingTimeline == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gv_app.lv_players[EventPlayer()].lv_flags.lv_isPlayingTimeline = true;
+    libF27BF28E_gf_PlaybackQueueForPlayer(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_PlaybackQueueHotkey_Init () {
+    libF27BF28E_gt_PlaybackQueueHotkey = TriggerCreate("libF27BF28E_gt_PlaybackQueueHotkey_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_PlaybackQueueHotkey, c_playerAny, c_keyK, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: PlaybackQueueButton
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_PlaybackQueueButton_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_cameraID;
+    int lv_savedCameraCount;
+    int lv_selectedSavedCameraID;
+    libF27BF28E_gs_CameraProperties lv_camera;
+    text lv_status;
+    timer lv_timer;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_selectedSavedCameraID = (DialogControlGetSelectedItem(libF27BF28E_gv_app.lv_uIEvents.lv_listbox, EventPlayer()) - 1);
+    lv_camera.lv_title = "";
+    lv_camera.lv_rotation = 90.0;
+    lv_camera.lv_distance = 34.0;
+    lv_camera.lv_angleofAttack = 56.0;
+    lv_camera.lv_shadowClip = 8.0;
+    lv_timer = TimerCreate();
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libF27BF28E_gv_app.lv_uIEvents.lv_playButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gf_PlaybackQueueForPlayer(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_PlaybackQueueButton_Init () {
+    libF27BF28E_gt_PlaybackQueueButton = TriggerCreate("libF27BF28E_gt_PlaybackQueueButton_Func");
+    TriggerAddEventDialogControl(libF27BF28E_gt_PlaybackQueueButton, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Track Mouse
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_TrackMouse_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_x;
+    fixed lv_y;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_x = EventMouseMovedPosXWorld();
+    lv_y = EventMouseMovedPosYWorld();
+
+    // Conditions
+    if (testConds) {
+        if (!((TechTreeUpgradeCount(EventPlayer(), "Obs", c_techCountCompleteOnly) > 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gv_players[EventPlayer()].lv_input.lv_mousePosition = Point(lv_x, lv_y);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_TrackMouse_Init () {
+    libF27BF28E_gt_TrackMouse = TriggerCreate("libF27BF28E_gt_TrackMouse_Func");
+    TriggerAddEventMouseMoved(libF27BF28E_gt_TrackMouse, c_playerAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: InitializeCameraLocations
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_InitializeCameraLocations_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    point lv_target;
+    string lv_coordsString;
+
+    // Automatic Variable Declarations
+    playergroup autoFABBAE79_g;
+
+    // Variable Initialization
+    lv_coordsString = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoFABBAE79_g = PlayerGroupActive();
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(autoFABBAE79_g, lv_player);
+        if (lv_player < 0) { break; }
+        lv_target = PlayerStartLocation(lv_player);
+        libF27BF28E_gv_app.lv_players[lv_player].lv_camera.lv_position = lv_target;
+        lv_coordsString = ("(" + FixedToString(PointGetX(lv_target), 1) + ", " + FixedToString(PointGetY(lv_target), 1) + ")");
+        libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[0], StringToText(lv_coordsString), PlayerGroupSingle(lv_player));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_InitializeCameraLocations_Init () {
+    libF27BF28E_gt_InitializeCameraLocations = TriggerCreate("libF27BF28E_gt_InitializeCameraLocations_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: 0 Track Camera
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt__0TrackCamera_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    point lv_target;
+    string lv_coordsString;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_target = CameraGetTarget(lv_player);
+    lv_coordsString = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(libF27BF28E_gf_IsObs(lv_player))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gv_app.lv_players[lv_player].lv_camera.lv_position = CameraGetTarget(lv_player);
+    lv_coordsString = ("(" + FixedToString(PointGetX(lv_target), 1) + ", " + FixedToString(PointGetY(lv_target), 1) + ")");
+    libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[0], StringToText(lv_coordsString), PlayerGroupSingle(lv_player));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt__0TrackCamera_Init () {
+    libF27BF28E_gt__0TrackCamera = TriggerCreate("libF27BF28E_gt__0TrackCamera_Func");
+    TriggerAddEventCameraMove(libF27BF28E_gt__0TrackCamera, 0, c_cameraMoveReasonAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: 1 Track Camera
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt__1TrackCamera_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    point lv_target;
+    string lv_coordsString;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = 1;
+    lv_target = CameraGetTarget(lv_player);
+    lv_coordsString = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(libF27BF28E_gf_IsObs(lv_player))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gv_app.lv_players[lv_player].lv_camera.lv_position = CameraGetTarget(lv_player);
+    lv_coordsString = ("(" + FixedToString(PointGetX(lv_target), 1) + ", " + FixedToString(PointGetY(lv_target), 1) + ")");
+    libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[0], StringToText(lv_coordsString), PlayerGroupSingle(lv_player));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt__1TrackCamera_Init () {
+    libF27BF28E_gt__1TrackCamera = TriggerCreate("libF27BF28E_gt__1TrackCamera_Func");
+    TriggerAddEventCameraMove(libF27BF28E_gt__1TrackCamera, 1, c_cameraMoveReasonAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: 2 Track Camera
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt__2TrackCamera_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    point lv_target;
+    string lv_coordsString;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = 2;
+    lv_target = CameraGetTarget(lv_player);
+    lv_coordsString = "";
+
+    // Conditions
+    if (testConds) {
+        if (!(libF27BF28E_gf_IsObs(lv_player))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF27BF28E_gv_app.lv_players[lv_player].lv_camera.lv_position = CameraGetTarget(lv_player);
+    lv_coordsString = ("(" + FixedToString(PointGetX(lv_target), 1) + ", " + FixedToString(PointGetY(lv_target), 1) + ")");
+    libNtve_gf_SetDialogItemText(libF27BF28E_gv_app.lv_uICamera.lv_propertyValues[0], StringToText(lv_coordsString), PlayerGroupSingle(lv_player));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt__2TrackCamera_Init () {
+    libF27BF28E_gt__2TrackCamera = TriggerCreate("libF27BF28E_gt__2TrackCamera_Func");
+    TriggerAddEventCameraMove(libF27BF28E_gt__2TrackCamera, 2, c_cameraMoveReasonAny);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: KeyUp
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_KeyUp_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int auto4A510142_val;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto4A510142_val = EventKeyPressed();
+    if (auto4A510142_val == c_keyW) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_w = false;
+    }
+    else if (auto4A510142_val == c_keyA) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_a = false;
+    }
+    else if (auto4A510142_val == c_keyS) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_s = false;
+    }
+    else if (auto4A510142_val == c_keyD) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_d = false;
+    }
+    else if (auto4A510142_val == c_keyQ) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_q = false;
+    }
+    else if (auto4A510142_val == c_keyE) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_e = false;
+    }
+    else if (auto4A510142_val == c_keyZ) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_z = false;
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_KeyUp_Init () {
+    libF27BF28E_gt_KeyUp = TriggerCreate("libF27BF28E_gt_KeyUp_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_KeyUp, c_playerAny, c_keyNone, false, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: KeyDown
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_KeyDown_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int autoE7F26ACB_val;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoE7F26ACB_val = EventKeyPressed();
+    if (autoE7F26ACB_val == c_keyW) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_w = true;
+    }
+    else if (autoE7F26ACB_val == c_keyA) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_a = true;
+    }
+    else if (autoE7F26ACB_val == c_keyS) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_s = true;
+    }
+    else if (autoE7F26ACB_val == c_keyD) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_d = true;
+    }
+    else if (autoE7F26ACB_val == c_keyQ) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_q = true;
+    }
+    else if (autoE7F26ACB_val == c_keyE) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_e = true;
+    }
+    else if (autoE7F26ACB_val == c_keyZ) {
+        libF27BF28E_gv_players[EventPlayer()].lv_input.lv_z = true;
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_KeyDown_Init () {
+    libF27BF28E_gt_KeyDown = TriggerCreate("libF27BF28E_gt_KeyDown_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_KeyDown, c_playerAny, c_keyNone, true, c_keyModifierStateIgnore, c_keyModifierStateIgnore, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Event Loop
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_EventLoop_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_playerID;
+    fixed lv_camRoll;
+    fixed lv_camDoF;
+    fixed lv_camAngle;
+    fixed lv_camHeight;
+    fixed lv_camRotation;
+    fixed lv_camDistance;
+    fixed lv_camFocusDepth;
+    fixed lv_camMovementSpeed;
+    fixed lv_camDeceleration;
+    fixed lv_camNewPropValue;
+    bool lv_camUI;
+    bool lv_pressedW;
+    bool lv_pressedA;
+    bool lv_pressedS;
+    bool lv_pressedD;
+    bool lv_pressedE;
+    bool lv_pressedQ;
+    bool lv_pressedZ;
+
+    // Automatic Variable Declarations
+    const int auto91160D0E_ae = 15;
+    const int auto91160D0E_ai = 1;
+
+    // Variable Initialization
+    lv_camDeceleration = 25.0;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    while ((TriggerIsEnabled(TriggerGetCurrent()) == true)) {
+        lv_playerID = 0;
+        for ( ; ( (auto91160D0E_ai >= 0 && lv_playerID <= auto91160D0E_ae) || (auto91160D0E_ai < 0 && lv_playerID >= auto91160D0E_ae) ) ; lv_playerID += auto91160D0E_ai ) {
+            if ((TechTreeUpgradeCount(lv_playerID, "Obs", c_techCountCompleteOnly) > 0) && (libNtve_gf_DialogItemIsChecked(libF27BF28E_gv_app.lv_uICamera.lv_wASDCheckbox, lv_playerID) == true)) {
+                lv_camUI = libF27BF28E_gv_players[lv_playerID].lv_flags.lv_cameraUI;
+                lv_camMovementSpeed = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_wASDSpeed;
+                lv_camRoll = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_roll;
+                lv_camDoF = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_depthofField;
+                lv_camAngle = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_angleofAttack;
+                lv_camHeight = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_height;
+                lv_camRotation = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_rotation;
+                lv_camDistance = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_distance;
+                lv_camFocusDepth = libF27BF28E_gv_app.lv_players[lv_playerID].lv_camera.lv_shadowClip;
+                lv_pressedW = libF27BF28E_gv_players[lv_playerID].lv_input.lv_w;
+                lv_pressedA = libF27BF28E_gv_players[lv_playerID].lv_input.lv_a;
+                lv_pressedS = libF27BF28E_gv_players[lv_playerID].lv_input.lv_s;
+                lv_pressedD = libF27BF28E_gv_players[lv_playerID].lv_input.lv_d;
+                lv_pressedE = libF27BF28E_gv_players[lv_playerID].lv_input.lv_q;
+                lv_pressedQ = libF27BF28E_gv_players[lv_playerID].lv_input.lv_e;
+                lv_pressedZ = libF27BF28E_gv_players[lv_playerID].lv_input.lv_z;
+                if ((lv_pressedW == true) && (lv_camAngle < 90.0)) {
+                    lv_camNewPropValue = (lv_camAngle + lv_camMovementSpeed);
+                    libF27BF28E_gf_SetCameraProperty(lv_playerID, c_cameraValuePitch, lv_camNewPropValue, 0.5);
+                }
+
+                if ((lv_pressedS == true) && (lv_camAngle > 0.0)) {
+                    lv_camNewPropValue = (lv_camAngle - lv_camMovementSpeed);
+                    libF27BF28E_gf_SetCameraProperty(lv_playerID, c_cameraValuePitch, lv_camNewPropValue, 0.5);
+                }
+
+                if ((lv_pressedA == true)) {
+                    lv_camNewPropValue = (lv_camRotation - lv_camMovementSpeed);
+                    if ((lv_camNewPropValue < 0.0)) {
+                        lv_camNewPropValue = (lv_camNewPropValue + 360.0);
+                    }
+
+                    libF27BF28E_gf_SetCameraProperty(lv_playerID, c_cameraValueYaw, lv_camNewPropValue, 0.5);
+                }
+
+                if ((lv_pressedD == true)) {
+                    lv_camNewPropValue = (lv_camRotation + lv_camMovementSpeed);
+                    if ((lv_camNewPropValue > 360.0)) {
+                        lv_camNewPropValue = (lv_camNewPropValue - 360.0);
+                    }
+
+                    libF27BF28E_gf_SetCameraProperty(lv_playerID, c_cameraValueYaw, lv_camNewPropValue, 0.5);
+                }
+
+                if ((lv_pressedE == true) && (lv_camDistance < 201.0)) {
+                    lv_camNewPropValue = (lv_camDistance + (lv_camMovementSpeed / 2.0));
+                    libF27BF28E_gf_SetCameraProperty(lv_playerID, c_cameraValueDistance, lv_camNewPropValue, 0.5);
+                }
+
+                if ((lv_pressedQ == true) && (lv_camDistance > 4.0)) {
+                    lv_camNewPropValue = (lv_camDistance - (lv_camMovementSpeed / 2.0));
+                    libF27BF28E_gf_SetCameraProperty(lv_playerID, c_cameraValueDistance, lv_camNewPropValue, 0.5);
+                }
+
+            }
+
+        }
+        Wait(0.1, c_timeGame);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_EventLoop_Init () {
+    libF27BF28E_gt_EventLoop = TriggerCreate("libF27BF28E_gt_EventLoop_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: R - Reveal map
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_RRevealmap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(EventPlayer(), "Obs", c_techCountCompleteOnly) > 0)) {
+        if ((libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_vision == false)) {
+            VisRevealerCreate(EventPlayer(), RegionEntireMap());
+            libF27BF28E_gv_players[EventPlayer()].lv_camera.lv_vision = VisRevealerLastCreated();
+            libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_vision = true;
+        }
+        else {
+            VisRevealerDestroy(libF27BF28E_gv_players[EventPlayer()].lv_camera.lv_vision);
+            libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_vision = false;
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_RRevealmap_Init () {
+    libF27BF28E_gt_RRevealmap = TriggerCreate("libF27BF28E_gt_RRevealmap_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_RRevealmap, c_playerAny, c_keyR, true, c_keyModifierStateIgnore, c_keyModifierStateExclude, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CTRL C - Toggle SCII UI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_CTRLCToggleSCIIUI_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(EventPlayer(), "Obs", c_techCountCompleteOnly) > 0) && (libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_gameUI == true)) {
+        libF27BF28E_gf_ToggleGameUI(false);
+        libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_gameUI = false;
+    }
+    else {
+        libF27BF28E_gf_ToggleGameUI(true);
+        libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_gameUI = true;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_CTRLCToggleSCIIUI_Init () {
+    libF27BF28E_gt_CTRLCToggleSCIIUI = TriggerCreate("libF27BF28E_gt_CTRLCToggleSCIIUI_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_CTRLCToggleSCIIUI, c_playerAny, c_keyC, true, c_keyModifierStateIgnore, c_keyModifierStateRequire, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CTRL T - Toggle SCII Terrain
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_CTRLTToggleSCIITerrain_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(EventPlayer(), "Obs", c_techCountCompleteOnly) > 0) && (libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_terrain == true)) {
+        EnvironmentShow(c_environmentAll, false);
+        libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_terrain = false;
+    }
+    else {
+        EnvironmentShow(c_environmentAll, true);
+        libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_terrain = true;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_CTRLTToggleSCIITerrain_Init () {
+    libF27BF28E_gt_CTRLTToggleSCIITerrain = TriggerCreate("libF27BF28E_gt_CTRLTToggleSCIITerrain_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_CTRLTToggleSCIITerrain, c_playerAny, c_keyT, true, c_keyModifierStateIgnore, c_keyModifierStateRequire, c_keyModifierStateIgnore);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: CTRL Z - Toggle Camera UI
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_gt_CTRLZToggleCameraUI_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TechTreeUpgradeCount(EventPlayer(), "Obs", c_techCountCompleteOnly) > 0) && (libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_cameraUI == true)) {
+        libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_cameraUI = false;
+    }
+    else {
+        libF27BF28E_gv_players[EventPlayer()].lv_flags.lv_cameraUI = true;
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF27BF28E_gt_CTRLZToggleCameraUI_Init () {
+    libF27BF28E_gt_CTRLZToggleCameraUI = TriggerCreate("libF27BF28E_gt_CTRLZToggleCameraUI_Func");
+    TriggerAddEventKeyPressed(libF27BF28E_gt_CTRLZToggleCameraUI, c_playerAny, c_keyZ, true, c_keyModifierStateIgnore, c_keyModifierStateRequire, c_keyModifierStateIgnore);
+}
+
+void libF27BF28E_InitTriggers () {
+    libF27BF28E_gt_Initialize_Init();
+    libF27BF28E_gt_InitHelp_Init();
+    libF27BF28E_gt_InitBlizzUI_Init();
+    libF27BF28E_gt_ToggleBlizzUI_Init();
+    libF27BF28E_gt_PauseOnMouseOver_Init();
+    libF27BF28E_gt_InitializeCameraPropertyUI_Init();
+    libF27BF28E_gt_ToggleCameraUI_Init();
+    libF27BF28E_gt_HandleMouseOverCameraProperty_Init();
+    libF27BF28E_gt_ResetCamera_Init();
+    libF27BF28E_gt_CloseButtonEvents_Init();
+    libF27BF28E_gt_ResetButtonEvents_Init();
+    libF27BF28E_gt_HandleSlider_Init();
+    libF27BF28E_gt_InitializeCameraEventsUI_Init();
+    libF27BF28E_gt_ToggleEventsUI_Init();
+    libF27BF28E_gt_AddEventButton_Init();
+    libF27BF28E_gt_DeleteEventButton_Init();
+    libF27BF28E_gt_EditButton_Init();
+    libF27BF28E_gt_StopButton_Init();
+    libF27BF28E_gt_PlaybackQueueHotkey_Init();
+    libF27BF28E_gt_PlaybackQueueButton_Init();
+    libF27BF28E_gt_TrackMouse_Init();
+    libF27BF28E_gt_InitializeCameraLocations_Init();
+    libF27BF28E_gt__0TrackCamera_Init();
+    libF27BF28E_gt__1TrackCamera_Init();
+    libF27BF28E_gt__2TrackCamera_Init();
+    libF27BF28E_gt_KeyUp_Init();
+    libF27BF28E_gt_KeyDown_Init();
+    libF27BF28E_gt_EventLoop_Init();
+    libF27BF28E_gt_RRevealmap_Init();
+    libF27BF28E_gt_CTRLCToggleSCIIUI_Init();
+    libF27BF28E_gt_CTRLTToggleSCIITerrain_Init();
+    libF27BF28E_gt_CTRLZToggleCameraUI_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libF27BF28E_InitLib_completed = false;
+
+void libF27BF28E_InitLib () {
+    if (libF27BF28E_InitLib_completed) {
+        return;
+    }
+
+    libF27BF28E_InitLib_completed = true;
+
+    libF27BF28E_InitLibraries();
+    libF27BF28E_InitVariables();
+    libF27BF28E_InitTriggers();
+}
+
